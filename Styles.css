@@ -1,9 +1,10 @@
 * {
-  color: blue;
+  color: rgb(23, 61, 29);
 }
 
 h1 {
   font-weight: bolder;
-  text-decoration: line-through;
-  color: aqua;
+  text-decoration: underline;
+  color: rgb(158, 13, 134);
+  text-shadow: 5px 5px 5px;
 }
