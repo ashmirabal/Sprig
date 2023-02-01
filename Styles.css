@@ -1,4 +1,9 @@
 * {
-  color: darkgreen;
+  color: blue;
 }
 
+h1 {
+  font-weight: bolder;
+  text-decoration: line-through;
+  color: aqua;
+}
