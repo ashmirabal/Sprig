@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
+//So you don't have to add .ejs to the routes
+app.set("view engine", "ejs");
+
 // app.use(express.static(__dirname + '/public'));
 
 // The Logger
