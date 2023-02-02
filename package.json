@@ -1,0 +1,27 @@
+{
+  "name": "sprig",
+  "version": "1.0.0",
+  "description": "A Market Place For Plant People",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ACCSoftwareBootcamp/Sprig.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ACCSoftwareBootcamp/Sprig/issues"
+  },
+  "homepage": "https://github.com/ACCSoftwareBootcamp/Sprig#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
+  }
+}
