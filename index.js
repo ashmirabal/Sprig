@@ -13,7 +13,16 @@ const logger = require('morgan');
 app.use(logger('dev'));
 
 app.get('/', (req,res) =>{
-  res.send('Root route is working')
+  res.redirect('landingPage')
+})
+
+
+app.get('/landingPage', (req,res) =>{
+  res.render("landingPage")
+})
+
+app.get('/signup', (req,res) =>{
+  res.render("signup")
 })
 
 app.listen(port, () => console.log(`App listening on port ${port}`));
