@@ -17,7 +17,11 @@ body{
 }
 
 .logo{
-    
+    box-shadow: black 2px 2px 8px;
+    background-color: #4c634c;
+    border: #4c634c 5px solid;
+    border-radius: 100%;
+    margin-top: 2%;
     margin-bottom: 3%;
 }
 
