@@ -1,3 +1,4 @@
+
 /* signup page styling */
 
 * {
@@ -65,3 +66,115 @@ body {
   margin-top: 10px;
   border-radius: 1rem;
 }
+
+
+#landingLgCard{
+    background-color: rgb(247, 240, 232);
+    border: rgb(189, 168, 168) 5px outset;
+    box-shadow: 2px 3px 20px black;
+    border-radius: 25px;
+    width: 75vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 3%;
+    text-align: center;
+}
+
+.logo{
+    
+    margin-bottom: 3%;
+}
+
+#carouselContainer{
+    
+    background-color: #ffffff00;
+    border-radius: 20px;
+    width: 60%;
+    /* box-shadow: 2px 3px 20px black; */
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%;
+    box-shadow: 0 0 5px #435a31,
+  0 0 25px #435a31,
+  0 0 50px #435a31,
+  0 0 100px #435a31;
+  color: #435a31;
+}
+
+#carouselPhotos{
+    border-radius: 20px;
+}
+
+.row{
+    margin-bottom: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+    
+}
+
+.card{
+    color: white;
+    text-shadow: rgb(0, 0, 0) 2px 2px 5px;
+    border: rgb(189, 168, 168) 5px outset;
+    background-color: rgb(201, 172, 144);
+    border-radius: 20px;
+    box-shadow: 2px 3px 20px black;
+    padding: 2%;
+    height: 35vh;
+    
+}
+
+
+#UserExists{
+    font-size: 12px;
+}
+
+
+#createBtn{
+    width: 170px;
+    height: 45px;
+    text-decoration: none;
+    text-align: center;
+    font-size: medium
+}
+
+.landingBtn {
+    width: 130px;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+    background: #324132;
+    background: linear-gradient(0deg, #324132 0%, #4c634c 100%);
+    border: none;
+    
+  }
+  .landingBtn:before {
+    height: 0%;
+    width: 2px;
+  }
+  .landingBtn:hover {
+    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+                -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+      inset -4px -4px 6px 0 rgba(255,255,255,.2),
+      inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+  }
+
+#SignInBtn{
+    margin: 2%;
+}
+
+  
