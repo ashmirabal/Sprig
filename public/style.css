@@ -16,6 +16,10 @@ body{
     text-align: center;
 }
 
+.logo{
+    
+    margin-bottom: 3%;
+}
 
 #carouselContainer{
     
@@ -45,6 +49,8 @@ body{
 }
 
 .card{
+    color: white;
+    text-shadow: rgb(0, 0, 0) 2px 2px 5px;
     border: rgb(189, 168, 168) 5px outset;
     background-color: rgb(201, 172, 144);
     border-radius: 20px;
