@@ -3,34 +3,37 @@
 
 <div id="signup">
   <p class="text-center signup-title">Create Account</p>
-<form class="form">
+<form class="form" action="/signup" method="POST">
   <div class="form-group">
-    <input type="text" class="form-control" id="fullname"  placeholder="Full Name"> <i class="fa-solid fa-user"></i>
+    <input type="text" class="form-control" name="fname" id="firstname"  placeholder="First Name"> <i class="fa-solid fa-user"></i>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" id="fullname"  placeholder="Username"> <i class="fa-regular fa-user"></i>
+    <input type="text" class="form-control" name="lname"id="lastname"  placeholder="Last Name"> <i class="fa-solid fa-user"></i>
   </div>
   <div class="form-group">
-    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"> <i class="fa-solid fa-envelope"></i>
+    <input type="text" class="form-control" name="username"id="username"  placeholder="Username"> <i class="fa-regular fa-user"></i>
   </div>
   <div class="form-group">
-    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Confirm Email"> <i class="fa-regular fa-envelope"></i>
+    <input type="email" class="form-control" name="email"id="exampleInputEmail1" placeholder="Email"> <i class="fa-solid fa-envelope"></i>
+  </div>
+  <!-- <div class="form-group">
+    <input type="email" class="form-control" name="fname"id="exampleInputEmail1" placeholder="Confirm Email"> <i class="fa-regular fa-envelope"></i>
+  </div> -->
+  <div class="form-group">
+    <input type="number" class="form-control" name="age"id="age"  placeholder="Age"> <i class="fa-solid fa-check"></i>
   </div>
   <div class="form-group">
-    <input type="number" class="form-control" id="age"  placeholder="Age"> <i class="fa-solid fa-check"></i>
+    <input type="text" class="form-control" name="city"id="city"  placeholder="City"> <i class="fa-solid fa-city"></i>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" id="city"  placeholder="City"> <i class="fa-solid fa-city"></i>
+    <input type="text" class="form-control" name="state"id="state"  placeholder="State"> <i class="fa-solid fa-flag-usa"></i>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" id="state"  placeholder="State"> <i class="fa-solid fa-flag-usa"></i>
+    <input type="password" class="form-control" name="password"id="exampleInputPassword1" placeholder="Password"> <i class="fa-solid fa-shield"></i>
   </div>
-  <div class="form-group">
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"> <i class="fa-solid fa-shield"></i>
-  </div>
-  <div class="form-group">
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password"> <i class="fa-solid fa-shield-halved"></i>
-  </div>
+  <!-- <div class="form-group">
+    <input type="password" class="form-control" name="fname"id="exampleInputPassword1" placeholder="Confirm Password"> <i class="fa-solid fa-shield-halved"></i>
+  </div> -->
 
   <a href="#" style="display: block;">Already have an account? LOG IN</a>
   <div>
