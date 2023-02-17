@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
+//Requiring post.js in the models folder
+const Post = require("./models/post")
 
 // // multer image upload stuff
 // const path = require('path');
@@ -44,7 +46,7 @@ app.use(express.static(__dirname + '/public'));
 
 //access body parser
 app.use(express.json())
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: true}))
 
 // The Logger
 const logger = require('morgan');
@@ -71,21 +73,47 @@ app.get('/signup', (req,res) =>{
 
 // Home Route
 app.get('/home', (req, res)=>{
-  res.render('home')
+
+ //Read from the posts collection 
+// Display using the data coming from the posts
+  const posts = [{
+    
+    title: "Big Green Plant",
+    description: "The plant is big and green."
+}]
+  res.render('home', {posts})
 });
+
+// New.ejs route where the the new post form is. 
+app.get("/home/new", (req, res)=>{
+  let post = {title:"",
+              description:""}
+  res.render("new", {post: post});
+})
+
+// The Show-Post Route
+app.get("/home/:id", (req, res)=>{
+  res.send("It works!") ;
+})
+
+
+
 
 // POST To The Bulletin Board on the HomePage 
 //The Create
 app.post("/home", (req, res)=>{
+  const date = new Date();
+  const currentDate = date.toLocaleDateString();
+
   let thePost = new Post({
       title: req.body.title,
-      description: req.body.description
-      
+      description: req.body.description,
+      date: currentDate
   });
   thePost.save((error, post)=>{
       if(error){
           console.log(error);
-          res.render("new.ejs", {post: thePost});
+          res.render("new", {post: thePost});
       } else {
           console.log(post);
           res.redirect(`/home/${post._id}`);
@@ -111,7 +139,7 @@ app.post('/signup', (req,res)=>{
   console.log(user)
   UserModel.create(user, (err, result)=>{
     if(err) res.redirect("/")
-    else res.redirect('/signup')
+    else res.redirect('/home')
   }
   )
 })

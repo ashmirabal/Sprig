@@ -68,7 +68,7 @@ body {
 }
 
 
-#landingLgCard{
+#LgCard{
     background-color: rgb(247, 240, 232);
     border: rgb(189, 168, 168) 5px outset;
     box-shadow: 2px 3px 20px black;
@@ -144,7 +144,7 @@ body {
     font-size: medium
 }
 
-.landingBtn {
+.greenBtn {
     width: 130px;
     height: 40px;
     color: #fff;
@@ -166,11 +166,11 @@ body {
     border: none;
     
   }
-  .landingBtn:before {
+  .greenBtn:before {
     height: 0%;
     width: 2px;
   }
-  .landingBtn:hover {
+  .greenBtn:hover {
     box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
                 -4px -4px 6px 0 rgba(116, 125, 136, .5), 
       inset -4px -4px 6px 0 rgba(255,255,255,.2),
@@ -181,5 +181,5 @@ body {
     margin: 2%;
 }
 
-  
+
 

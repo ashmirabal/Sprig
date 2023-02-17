@@ -1,14 +1,17 @@
 <%- include('./partials/header.ejs')%>
-<%- include('./partials/navbar.ejs')%>
+    <%- include('./partials/navbar.ejs')%>
+
+
+        <h1>New Post</h1>
+
+        <div class="card mb-4" style="width: 30rem;" id="Card">
+            <div class="card-body">
+                <form action="/home" method="POST">
+                    <%- include("partials/post_form") %>
+                </form>
+            </div>
+        </div>
 
 
 
-<form action="/posts" method="POST">
-    <%- include("./partials/form_inputs.ejs") %> 
-</form>
-
-
-
-
-
-<%- include('./partials/footer.ejs')%>
+        <%- include('./partials/footer.ejs')%>
