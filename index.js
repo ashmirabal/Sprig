@@ -120,7 +120,7 @@ app.get("/home/new", (req, res) => {
 })
 
 // The Show-Post Route
-app.get("/home/:id", (req, res) => {
+app.get("/home/showPost/:id", (req, res) => {
   Post.findById(req.params.id, (error, post) => {
     if (error) {
       console.log(error);
@@ -149,13 +149,13 @@ app.post("/home", (req, res) => {
       res.render("new", { post: thePost });
     } else {
       console.log(post);
-      res.redirect(`/home/${post._id}`);
+      res.redirect(`/home/showPost/${post._id}`);
     }
   });
 });
 
 // Edit Post Route
-app.get("home/edit/:id", (req, res) =>{
+app.get("/showPost/edit/:id", (req, res) =>{
   Post.findById(req.params.id, (error, post) => {
     if(error) {
       console.log(error);
@@ -165,6 +165,33 @@ app.get("home/edit/:id", (req, res) =>{
     }
   })
 })
+
+// The PUT Route for the Edit Post
+app.put("/home/:id", (req, res) => {
+  Post.findByIdAndUpdate({ _id: req.params.id }, {
+    title: req.body.title,
+    description: req.body.description,
+  }, (error, post) => {
+    if (error) {
+      console.log(error);
+    } else {
+      res.redirect(`/home/showPost/${post._id}`)
+    }
+  })
+});
+
+// The Delete Route
+app.delete("/showPost/edit/:id", (req, res) => {
+  Post.findByIdAndDelete(req.params.id, (error, post) => {
+    if(error){
+      console.log(error);
+    } else {
+      console.log("This post was destroyed: ", post);
+      res.redirect('/home');
+    }
+  })
+});
+
 
 
 app.listen(port, () => console.log(`App listening on port ${port}`));

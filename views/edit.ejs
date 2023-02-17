@@ -2,8 +2,8 @@
 <%- include('./partials/navbar.ejs')%>
 
 <h1>Edit Post</h1>
-<form action="/<%= post._id %>?_method=PUT" method="POST">
-    <%- include("./partials/form_inputs.ejs") %> 
+<form action="/home/<%= post._id %>?_method=PUT" method="POST">
+    <%- include("./partials/post_form.ejs") %> 
 </form>
 
 

@@ -12,6 +12,12 @@
           <p class="card-text">
             <%= post.description %>
           </p> 
+          <a href="/showPost/edit/<%= post.id %>" class="info-editBtn">Edit</a>
+          <form action="/showPost/edit/<%= post.id %>?_method=DELETE" method="POST">
+        <div class="form-group">
+            <button type="submit" id="deleteBtn"><i class="fa-solid fa-trash-can"></i></button>
+        </div>
+        </form>
         </div>
       </div>
 
