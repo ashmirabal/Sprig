@@ -8,21 +8,7 @@ const Post = require("./models/post")
 const methodOverride = require("method-override")
 
 
-// // multer image upload stuff
-// const path = require('path');
-// const multer = require('multer');
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//    // The Null is where we need to add in error handling.
-//     cb(null, 'FakeImageDB')
-//   },
-//   filename: (req, file, cb) => {
-//     console.log(file);
-//     cb(null, Date.now() + path.extname(file.originalname))
-//   }
-// })
-// // Multer Upload MiddleWare
-// const upload = multer({storage: storage})
+
 
 //Connect to database
 const mongoose = require('mongoose');
@@ -45,6 +31,7 @@ mongoose.connect(url, options)
 app.set("view engine", "ejs");
 // So you can see into the public folder
 app.use(express.static(__dirname + '/public'));
+ app.use('/home/showPost', express.static(__dirname + '/public'))
 // So you can use the MethodOverride
 app.use(methodOverride("_method"));
 //access body parser

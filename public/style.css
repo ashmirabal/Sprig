@@ -1,6 +1,9 @@
+body{
+  background-color: #87AA8F;
+}
 
 #LgCard{
-    background-color: rgb(247, 240, 232);
+    background-color: rgb(224, 210, 193);
     border: rgb(189, 168, 168) 5px outset;
     box-shadow: 2px 3px 20px black;
     border-radius: 25px;
