@@ -31,7 +31,6 @@ mongoose.connect(url, options)
 app.set("view engine", "ejs");
 // So you can see into the public folder
 app.use(express.static(__dirname + '/public'));
- app.use('/home/showPost', express.static(__dirname + '/public'))
 // So you can use the MethodOverride
 app.use(methodOverride("_method"));
 //access body parser
