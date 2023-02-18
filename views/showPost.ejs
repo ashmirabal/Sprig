@@ -11,6 +11,9 @@
             <%= post.title %>
           </h4>
           <p class="card-text">
+            <%= post.category %>
+          </p>
+          <p class="card-text">
             <%= post.description %>
           </p> 
           <a href="/showPost/edit/<%= post.id %>" class="info-editBtn">Edit</a>
