@@ -48,6 +48,10 @@ app.get('/signup', (req,res) =>{
   res.render("signup")
 })
 
+app.get('/about', (req,res) =>{
+  res.render("about")
+})
+
 //create new user in db
 app.post('/signup', (req,res)=>{
   let {fname, lname, username, email, age, city, state, password} = req.body
