@@ -1,1 +1,42 @@
-<%- include('./partials/header.ejs', {pagetitle: "Home"})%>
+<%- include('./partials/header.ejs', {pagetitle: "Home" })%>
+  <%- include('./partials/navbar.ejs')%>
+
+    <!-- <h1>This is where we upload plant images!</h1>
+<form method="POST"  action="/home" enctype="multipart/form-data">
+    <input type="file" name="plantImage">
+    <button type="submit">Upload Plant</button>
+</form> -->
+
+    <div class="container" id="LgCard">
+      <div class="row mt-5">
+        <div class="col-md-6 offset-md-3">
+
+          <h1>Home Page</h1>
+
+          <span>
+            <a href="/home/new" class="greenBtn">New Post</a>
+          </span>
+
+          <% posts.forEach(post=> { %>
+            <div class="card mb-4" style="width: 30rem;" id="Card">
+              <div class="card-body">
+                <h6>
+                  <%=post.date%>
+                </h6>
+                <h4 class="card-title">
+                  <%= post.title %>
+                </h4>
+                <p class="card-text">
+                  <%= post.description %>
+                </p>
+                <a href="home/showPost/<%= post._id %>" class="info-editBtn">View More</a>
+
+              </div>
+            </div>
+            <% }); %>
+
+        </div>
+      </div>
+    </div>
+
+    <%- include('./partials/footer.ejs')%>

@@ -1,0 +1,11 @@
+<div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title" name="title" required value="<%= post.title %>">
+</div>
+
+<div class="form-group">
+    <label for="description">Description</label>
+    <textarea type="text" class="form-control" id="description" name="description" required><%= post.description %></textarea>
+</div>
+<br>
+<button type="submit" class="greenBtn">Submit</button>

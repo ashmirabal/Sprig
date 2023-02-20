@@ -1,0 +1,25 @@
+<%- include('./partials/header.ejs')%>
+    <%- include('./partials/navbar.ejs')%>
+
+    <div class="card mb-4" style="width: 30rem;" id="Card">
+        <div class="card-body">
+          <h6>
+            <%=post.date%>
+          </h6>
+          <h4 class="card-title">
+            <%= post.title %>
+          </h4>
+          <p class="card-text">
+            <%= post.description %>
+          </p> 
+          <a href="/showPost/edit/<%= post.id %>" class="info-editBtn">Edit</a>
+          <form action="/showPost/edit/<%= post.id %>?_method=DELETE" method="POST">
+        <div class="form-group">
+            <button type="submit" id="deleteBtn"><i class="fa-solid fa-trash-can"></i></button>
+        </div>
+        </form>
+        </div>
+      </div>
+
+    
+    <%- include('./partials/footer.ejs')%>
