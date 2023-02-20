@@ -1,10 +1,13 @@
 <%- include('./partials/header.ejs')%>
-<%- include('./partials/navbar.ejs')%>
+    <%- include('./partials/navbar.ejs')%>
 
-<h1>Edit Post</h1>
-<form action="/home/<%= post._id %>?_method=PUT" method="POST">
-    <%- include("./partials/post_form.ejs") %> 
-</form>
+        <h1>Edit Post</h1>
+        <div class="card mb-4" style="width: 30rem;" id="Card">
+            <div class="card-body">
+                <form action="/home/<%= post._id %>?_method=PUT" method="POST">
+                    <%- include("./partials/post_form.ejs") %>
+                </form>
+            </div>
+        </div>
 
-
-<%- include('./partials/footer.ejs')%>
+        <%- include('./partials/footer.ejs')%>

@@ -127,7 +127,9 @@ app.post("/home", (req, res) => {
   let thePost = new Post({
     title: req.body.title,
     description: req.body.description,
-    date: currentDate
+    date: currentDate,
+    category: req.body.plantCategory
+
   });
   thePost.save((error, post) => {
     if (error) {
