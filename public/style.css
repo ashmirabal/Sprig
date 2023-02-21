@@ -1,5 +1,5 @@
-#landingLgCard {
-    background-color: rgb(247, 240, 232);
+#LgCard{
+    background-color: rgb(224, 210, 193);
     border: rgb(189, 168, 168) 5px outset;
     box-shadow: 2px 3px 20px black;
     border-radius: 25px;
@@ -74,7 +74,7 @@
     font-size: medium
 }
 
-.landingBtn {
+.greenBtn {
     width: 130px;
     height: 40px;
     color: #fff;
@@ -96,19 +96,87 @@
     border: none;
 
 }
-
-.landingBtn:before {
+    
+  }
+  .greenBtn:before {
     height: 0%;
     width: 2px;
-}
+  }
+  .greenBtn:hover {
+    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+                -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+      inset -4px -4px 6px 0 rgba(255,255,255,.2),
+      inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+  }
 
-.landingBtn:hover {
-    box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .5),
-        -4px -4px 6px 0 rgba(116, 125, 136, .5),
-        inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
-        inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
-}
-
-#SignInBtn {
+#SignInBtn{
     margin: 2%;
+}
+
+.info-editBtn {
+  text-align: center;
+  float: left;
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+  background: #a1534d;
+  background: linear-gradient(0deg, #a1534d 0%, #ca8580 100%);
+  border: none;
+  
+}
+.info-editBtn:before {
+  height: 0%;
+  width: 2px;
+}
+.info-editBtn:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+
+
+#deleteBtn {
+  float: right;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+  background: #8d2119;
+  background: linear-gradient(0deg, #8d2119 0%, #c93126 100%);
+  border: none;
+  
+}
+#deleteBtn:before {
+  height: 0%;
+  width: 2px;
+}
+#deleteBtn:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
 }
