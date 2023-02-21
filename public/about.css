@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #87AA8F;
+}
+
+.main {
+  display: flex;
+
+}
+
+
+
+.imgBox {
+  /* background-image: url('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/house-plants-1629187361.jpg?crop=0.288xw:0.577xh;0.0465xw,0.205xh&resize=640:*'); */
+  background-image: url('https://images.pexels.com/photos/807598/pexels-photo-807598.jpeg?cs=srgb&dl=pexels-sohail-nachiti-807598.jpg&fm=jpg');
+  background-position: 100% 0;
+  background-size: cover;
+  padding: 0;
+  margin-left: -20px;
+  border-right: darkslategray 10px groove;
+  height: 100vh;
+}
+
+
+.aboutBody {
+  margin: 0 20px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+}
+
+.contact {
+  font-family: 'Quicksand', sans-serif;
+  border: dotted 2px white;
+  padding: 10px 15px;
+}
+
+.contact a {
+  font-size: 30px;
+  text-decoration: none;
+  color: #023313;
+  font-family: 'Fleur De Leah', cursive;
+  /* color: #7ac609; */
+  /* text-shadow: 2px 2px black; */
+}
+
+.contact a:hover {
+  text-shadow: 3px 3px 5px white;
+}
+
+/* Styling below is for header effect */
+
+span p {
+  /* font-family: 'Fleur De Leah', cursive; */
+  font-family: 'Berkshire Swash', cursive;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  font-size: 6rem;
+  background: linear-gradient(to bottom, #000, #000 60%, #fff 60%, #fff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-repeat: no-repeat;
+  transition: background 0.2s ease-out;
+  white-space: nowrap;
+}
+
+span {
+  position: relative;
+}
+
+span:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 15px;
+  background: #023313;
+  bottom: 9px;
+  transition: all 0.2s ease-out;
+}
+
+p:hover {
+  background-position: 0 11px;
+}
+
+span:hover:before {
+  transform: translateY(10px)
+}
