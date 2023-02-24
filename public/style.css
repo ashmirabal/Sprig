@@ -1,3 +1,11 @@
+body {
+    background-color: #87AA8F;
+    
+}
+
+
+/* LANDING PAGE */
+
 #landingBody{
     background-color: #87AA8F;
     background-image: url(./assets/image-from-rawpixel-id-3983091-original.png);
@@ -6,12 +14,6 @@
     background-attachment: fixed;
     background-position: center;
 }
-
-body {
-    background-color: #87AA8F;
-    
-}
-
 
 #LgLandingCard {
     
@@ -28,7 +30,7 @@ body {
     text-align: center;
 }
 
-#landingCard{
+#landingCards{
     color: white;
     text-shadow: rgb(0, 0, 0) 2px 2px 5px;
     border: rgb(189, 168, 168) 5px outset;
@@ -42,24 +44,12 @@ body {
     margin: 3% auto;
 }
 
+#UserExists {
+    font-size: 12px;
+}
 
-#LgHomeCard {
-    background-image: url(./assets/CardBackground.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-color: rgb(224, 210, 193);
-    border: rgb(189, 168, 168) 5px outset;
-    box-shadow: 2px 3px 20px black;
-    border-radius: 25px;
-    width: 75vw;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2%;
-    margin-bottom: 3%;
-    text-align: center;
+#SignInBtn {
+    margin: 2%;
 }
 
 .logo {
@@ -98,6 +88,99 @@ body {
 
 }
 
+/* HOME PAGE */
+
+#LgHomeCard {
+    background-image: url(./assets/CardBackground.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-color: rgb(224, 210, 193);
+    border: rgb(189, 168, 168) 5px outset;
+    box-shadow: 2px 3px 20px black;
+    border-radius: 25px;
+    width: 75vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 3%;
+    text-align: center;
+}
+
+
+#HomePosts {
+    color: white;
+    text-shadow: rgb(0, 0, 0) 2px 2px 5px;
+    border: rgb(189, 168, 168) 5px outset;
+    background-color: rgba(201, 171, 144, 0.918);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.274);
+    transition: 0.3s;
+    padding: 2%;
+    height: 45vh;
+    text-align: center;
+    margin: 3% auto;
+
+
+}
+
+#HomePosts:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.726);
+}
+
+#postDescription{
+    border: #3d3d3d8a outset 5px;
+    border-radius: 25px;
+    padding: 2% 0%;
+    background: linear-gradient(135deg, rgba(62, 107, 57, 0.438) 60%, rgba(20, 43, 17, 0.548));
+}
+
+.viewMoreBtn {
+    margin: 5% 0%;
+    text-align: center;
+    width: 25%;
+    
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+        7px 7px 20px 0px rgba(0, 0, 0, .1),
+        4px 4px 5px 0px rgba(0, 0, 0, .1);
+    outline: none;
+    background: #a1534d;
+    background: linear-gradient(0deg, #a1534d 0%, #ca8580 100%);
+    border: none;
+    display: flexbox;
+}
+
+.viewMoreBtn:before {
+    height: 0%;
+    width: 2px;
+}
+
+.viewMoreBtn:hover {
+    box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .5),
+        -4px -4px 6px 0 rgba(116, 125, 136, .5),
+        inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
+        inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+
+
+
+
+
+/* ------------------------------------------------------------------------- */
+
+
 #Card {
     color: white;
     text-shadow: rgb(0, 0, 0) 2px 2px 5px;
@@ -116,10 +199,6 @@ body {
 
 #Card:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.726);
-}
-
-#UserExists {
-    font-size: 12px;
 }
 
 
@@ -167,9 +246,7 @@ body {
         inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
 }
 
-#SignInBtn {
-    margin: 2%;
-}
+
 
 .info-editBtn {
     text-align: center;
