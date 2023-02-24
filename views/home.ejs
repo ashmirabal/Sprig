@@ -25,9 +25,14 @@
                   <%= post.title %>
                 </h4>
                 <p class="card-text">
+                  <% if (post.category==='INDOOR' ) { %>
+                    <img src="/assets/icons8-living-room-62.png" alt="">
+                    <% } else if(post.category==='OUTDOOR' ) { %>
+                      <img src="/assets/icons8-outdoor-64.png" alt="">
+                      <% } %>
                   <%= post.category %>
                 </p>
-                <p class="card-text">
+                <p class="card-text" id="postDescription">
                   <%= post.description %>
                 </p>
                 <a href="home/showPost/<%= post._id %>" class="info-editBtn">View More</a>
