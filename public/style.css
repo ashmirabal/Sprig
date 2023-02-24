@@ -1,9 +1,49 @@
+#landingBody{
+    background-color: #87AA8F;
+    background-image: url(./assets/image-from-rawpixel-id-3983091-original.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
 body {
     background-color: #87AA8F;
     
 }
 
-#LgCard {
+
+#LgLandingCard {
+    
+    background-color: rgb(224, 210, 193);
+    border: rgb(189, 168, 168) 5px outset;
+    box-shadow: 2px 3px 20px black;
+    border-radius: 25px;
+    width: 75vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 3%;
+    text-align: center;
+}
+
+#landingCard{
+    color: white;
+    text-shadow: rgb(0, 0, 0) 2px 2px 5px;
+    border: rgb(189, 168, 168) 5px outset;
+    background-color: rgb(201, 172, 144);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.274);
+    transition: 0.3s;
+    padding: 2%;
+    height: 30vh;
+    text-align: center;
+    margin: 3% auto;
+}
+
+
+#LgHomeCard {
     background-image: url(./assets/CardBackground.png);
     background-size: cover;
     background-repeat: no-repeat;
