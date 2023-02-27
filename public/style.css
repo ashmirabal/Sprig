@@ -113,32 +113,60 @@ body {
     border-radius: 25px;
     width: 75vw;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+
     margin-top: 2%;
     margin-bottom: 3%;
     text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 
-#HomePosts {
+#Posts {
     color: white;
-    text-shadow: rgb(0, 0, 0) 2px 2px 5px;
+    /* text-shadow: rgb(0, 0, 0) 2px 2px 5px; */
     border: rgb(189, 168, 168) 5px outset;
     background-color: rgba(201, 171, 144, 0.918);
     border-radius: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.274);
     transition: 0.3s;
-    padding: 2%;
-    height: 45vh;
+    height: auto;
     text-align: center;
     margin: 3% auto;
+    justify-content: center;
+    position: relative;
+   
+}
 
-
+#Posts:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.726);
 }
 
 #HomePosts:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.726);
+}
+
+
+#postDate{
+    text-align: left;
+    color: rgba(62, 107, 57);
+    font-weight: bold;
+    
+}
+
+#postTitle{
+    text-decoration: underline;
+    text-transform: capitalize;
+    text-shadow: rgb(0, 0, 0) 2px 2px 5px;
+    font-family: 'Berkshire Swash', cursive;
+    
+    
+}
+
+#postCategory{
+    text-align: left;
+    font-weight: bold;
+    text-shadow: rgb(0, 0, 0) 2px 2px 5px;
 }
 
 #postDescription{
@@ -149,20 +177,15 @@ body {
 }
 
 .viewMoreBtn {
-    margin: 5% 0%;
     text-align: center;
     width: 25%;
-    
     color: #fff;
     border-radius: 5px;
     padding: 10px 25px;
-
+    text-decoration: none;
     font-weight: 500;
-    background: transparent;
-    cursor: pointer;
+    cursor:pointer;
     transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
     box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
         7px 7px 20px 0px rgba(0, 0, 0, .1),
         4px 4px 5px 0px rgba(0, 0, 0, .1);
@@ -170,7 +193,7 @@ body {
     background: #a1534d;
     background: linear-gradient(0deg, #a1534d 0%, #ca8580 100%);
     border: none;
-    display: flexbox;
+    
 }
 
 .viewMoreBtn:before {
@@ -192,27 +215,6 @@ body {
 /* ------------------------------------------------------------------------- */
 
 
-#Card {
-    color: white;
-    text-shadow: rgb(0, 0, 0) 2px 2px 5px;
-    border: rgb(189, 168, 168) 5px outset;
-    background-color: rgb(201, 172, 144);
-    border-radius: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.274);
-    transition: 0.3s;
-    padding: 2%;
-    height: 45vh;
-    text-align: center;
-    margin: 3% auto;
-
-
-}
-
-#Card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.726);
-}
-
-
 #createBtn {
     width: 170px;
     height: 45px;
@@ -227,7 +229,7 @@ body {
     color: #fff;
     border-radius: 5px;
     padding: 10px 25px;
-
+    text-decoration: none;
     font-weight: 500;
     background: transparent;
     cursor: pointer;
@@ -333,10 +335,6 @@ body {
         inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
 }
 
-#postTitle {
-    color: #000000;
-    text-decoration: underline;
-}
 
 #indoorPic {
     height: 40px;
