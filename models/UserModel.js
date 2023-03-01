@@ -3,8 +3,6 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 //validator for unique?
 const uniqueValidator = require('mongoose-unique-validator');
-
-
 const passportLocalMongoose = require('passport-local-mongoose')
 
 //user Schema
@@ -45,8 +43,6 @@ let UserSchema = new mongoose.Schema({
     },
     password:{
         type: String,
-        required: [true, "Please enter a password"],
-        minLength: [8, "Your password must be at least 8 characters long"]
     },
     dateCreated:{
         type: Date,
@@ -55,7 +51,8 @@ let UserSchema = new mongoose.Schema({
 })
 
 //apply validator to userSchema
-UserSchema.plugin(uniqueValidator, passportLocalMongoose);
+UserSchema.plugin(uniqueValidator);
+UserSchema.plugin(passportLocalMongoose);
 
-//user model (collection, schema)
-exports.UserModel = new mongoose.model('sprigusers', UserSchema)
+
+module.exports = mongoose.model('User', UserSchema);

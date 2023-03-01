@@ -124,7 +124,10 @@
           </div>
         </div>
       </div>
-
+      <div class="row">
+        <% if (error) { %>
+          <%=error %>
+     <% } %>
 
       <%- include('./partials/footer.ejs')%>
 </div>
