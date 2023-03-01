@@ -4,8 +4,11 @@ const validator = require('validator');
 //validator for unique?
 const uniqueValidator = require('mongoose-unique-validator');
 
+
+const passportLocalMongoose = require('passport-local-mongoose')
+
 //user Schema
-let userSchema = new mongoose.Schema({
+let UserSchema = new mongoose.Schema({
     fname:{
         type: String,
         required: [true, "Please enter your first name"],
@@ -52,7 +55,7 @@ let userSchema = new mongoose.Schema({
 })
 
 //apply validator to userSchema
-userSchema.plugin(uniqueValidator);
+UserSchema.plugin(uniqueValidator, passportLocalMongoose);
 
 //user model (collection, schema)
-exports.UserModel = new mongoose.model('sprigusers', userSchema)
+exports.UserModel = new mongoose.model('sprigusers', UserSchema)

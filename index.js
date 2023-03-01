@@ -7,7 +7,9 @@ const Post = require("./models/post")
 //Requiring Method-Override so I can Update and Delete where I'm not suppose to.
 const methodOverride = require("method-override")
 
-
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 
 //Connect to database
@@ -45,6 +47,18 @@ app.use(logger('dev'));
 
 //user Schema
 const { UserModel } = require('./models/UserModel')
+
+//Middleware
+app.use(require('express-session')({
+  secret: process.env.SECRET ,
+  resave: false,
+  saveUninitialized: false
+}))
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(UserModel.authenticate()));
+passport.serializeUser(UserModel.serializeUser());
+passport.deserializeUser(UserModel.deserializeUser());
 
 // Root Route that redirects to the landingPage.
 app.get('/', (req, res) => {
@@ -86,6 +100,14 @@ app.post('/signup', (req, res) => {
   }
   )
 })
+
+app.post('/login', passport.authenticate('local', 
+{
+  successRedirect: '/home',
+  failureRedirect:'/landingPage'
+}), function(req, res){
+
+});
 
 // Home Route
 app.get('/home', (req, res) => {
