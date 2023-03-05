@@ -111,11 +111,11 @@
         <div class="col-sm-6">
           <div class="card" id="landingCards">
             <div class="card-body">
-              <form action="" method="post">
+              <form action="/login" method="POST">
                 <h2>Log In</h2>                
-                  <input type="text" placeholder="Email Address">
+                  <input type="text" name="username" placeholder="Username">
                   <br><br>
-                  <input type="text" placeholder="Password">
+                  <input type="text" name="password" placeholder="Password">
                   <br>
                   <button type="submit" class="greenBtn" id="SignInBtn">Sign In</button>
                   
@@ -124,7 +124,10 @@
           </div>
         </div>
       </div>
-
+      <div class="row">
+        <% if (error) { %>
+          <%=error %>
+     <% } %>
 
       <%- include('./partials/footer.ejs')%>
 </div>
