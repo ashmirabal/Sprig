@@ -64,6 +64,19 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//function/middleware checks to see if a user is logged in and redirects to home page if so
+checkLoggedIn = (req, res, next) => {
+  if (req.isAuthenticated()) { 
+      return res.redirect("/home")
+    }
+  next()
+}
+//function/middleware for protected routes, will not let user to protected routes if user is not logged in
+checkAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) { return next() }
+  res.redirect("/landingPage")
+}
+
 // Root Route that redirects to the landingPage.
 app.get('/', (req, res) => {
   res.redirect('landingPage')
@@ -78,6 +91,7 @@ app.get('/signup', (req, res) => {
   res.render("signup")
 });
 
+// About Page Route
 app.get('/about', (req, res) => {
   res.render("about")
 })
@@ -107,19 +121,33 @@ app.post('/signup', (req, res) => {
     } else {
       passport.authenticate("local")(req, res, function(){
           res.redirect('/home');
-       });
+        });
       }
     }
   )
 })
 
+// LOGIN ROUTE
 app.post('/login', passport.authenticate('local',
   {
     successRedirect: '/home',
     failureRedirect: '/landingPage'
+    
   }), function (req, res) {
 
   });
+
+
+//LOGOUT ROUTE
+app.get('/logout', (req,res) =>{
+  req.logout(
+    function(){} // need a callback fn for .logout
+  );
+  //when we logout, Passport destroys all user data in
+  //the session. Then we redirect to the home page
+  res.redirect('/landingPage')
+})
+
 
 // Home Route
 app.get('/home', (req, res) => {
