@@ -150,7 +150,7 @@ app.get('/logout', (req,res) =>{
 
 
 // Home Route
-app.get('/home', (req, res) => {
+app.get('/home',checkAuthenticated, (req, res) => {
   //Read from the posts collection 
   // Display using the data coming from the posts
   Post.find({}, (error, posts) => {
@@ -163,7 +163,7 @@ app.get('/home', (req, res) => {
 });
 
 // New.ejs route where the the new post form is. 
-app.get("/home/new", (req, res) => {
+app.get("/home/new", checkAuthenticated, (req, res) => {
   let post = {
     title: "",
     description: ""
@@ -172,7 +172,7 @@ app.get("/home/new", (req, res) => {
 })
 
 // The Show-Post Route
-app.get("/home/showPost/:id", (req, res) => {
+app.get("/home/showPost/:id",checkAuthenticated, (req, res) => {
   Post.findById(req.params.id, (error, post) => {
     if (error) {
       console.log(error);
@@ -209,7 +209,7 @@ app.post("/home", (req, res) => {
 });
 
 // Edit Post Route
-app.get("/showPost/edit/:id", (req, res) => {
+app.get("/showPost/edit/:id",checkAuthenticated, (req, res) => {
   Post.findById(req.params.id, (error, post) => {
     if (error) {
       console.log(error);
