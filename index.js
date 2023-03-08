@@ -16,6 +16,8 @@ const LocalStrategy = require('passport-local');
 const passportLocalMongoose = require('passport-local-mongoose');
 
 
+process.env.TZ = "GMT";
+
 //Connect to database
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
@@ -77,6 +79,15 @@ checkAuthenticated = (req, res, next) => {
   res.redirect("/landingPage")
 }
 
+
+
+
+//Multer And Cloudinary
+const imageUpload = require("./config/multer");
+const cloudinary = require('./config/cloudinary');
+const path = require('path');
+
+
 // Root Route that redirects to the landingPage.
 app.get('/', (req, res) => {
   res.redirect('landingPage')
@@ -91,7 +102,7 @@ app.get('/signup', (req, res) => {
   res.render("signup")
 });
 
-// About Page Route
+// About Route
 app.get('/about', (req, res) => {
   res.render("about")
 })
@@ -178,7 +189,7 @@ app.get("/home/showPost/:id",checkAuthenticated, (req, res) => {
       console.log(error);
       res.send("Ohh No! There Was An Error!")
     } else {
-      console.log(post);
+      // console.log(post);
       res.render("showPost", { post: post })
     }
   })
@@ -186,30 +197,47 @@ app.get("/home/showPost/:id",checkAuthenticated, (req, res) => {
 
 // POST To The Bulletin Board on the HomePage 
 //The Create
-app.post("/home", (req, res) => {
+app.post("/home", imageUpload.single('imagePost'), async (req, res) => {
   const date = new Date();
   const currentDate = date.toLocaleDateString();
 
-  let thePost = new Post({
-    title: req.body.title,
-    description: req.body.description,
-    date: currentDate,
-    category: req.body.plantCategory
+  try {
+    const result = await cloudinary.uploader.upload(req.file.path, { invalidate: true });
+    console.log(result);
 
-  });
-  thePost.save((error, post) => {
-    if (error) {
-      console.log(error);
-      res.render("new", { post: thePost });
-    } else {
-      console.log(post);
-      res.redirect(`/home/showPost/${post._id}`);
-    }
-  });
-});
+    let thePost = new Post({
+      title: req.body.title,
+      description: req.body.description,
+      date: currentDate,
+      category: req.body.plantCategory,
+      imagePost: result.secure_url,
+      cloudinary_id: result.public_id
+    });
+
+    thePost.save((error, post) => {
+      if (error) {
+        console.log(error);
+        res.render("new", { post: thePost });
+      } else {
+        //console.log(post);
+        res.redirect(`/home/showPost/${post._id}`);
+      }
+
+    });
+
+
+  } catch (err) {
+    console.log("Oops something went wrong uploading image: ", err)
+  }
+
+
+}); //Closes route
+
+
+
 
 // Edit Post Route
-app.get("/showPost/edit/:id",checkAuthenticated, (req, res) => {
+app.get("/showPost/edit/:id", checkAuthenticated, (req, res) => {
   Post.findById(req.params.id, (error, post) => {
     if (error) {
       console.log(error);
@@ -220,11 +248,17 @@ app.get("/showPost/edit/:id",checkAuthenticated, (req, res) => {
   })
 })
 
+
 // The PUT Route for the Edit Post
-app.put("/home/:id", (req, res) => {
+app.put("/home/:id", imageUpload.single('imagePost'), async (req, res) => {
+  const result = await cloudinary.uploader.upload(req.file.path);
   Post.findByIdAndUpdate({ _id: req.params.id }, {
     title: req.body.title,
+    imagePost: result.secure_url,
+    cloudinary_id: result.public_id,
     description: req.body.description,
+    category: req.body.plantCategory
+
   }, (error, post) => {
     if (error) {
       console.log(error);
@@ -235,15 +269,25 @@ app.put("/home/:id", (req, res) => {
 });
 
 // The Delete Route
-app.delete("/showPost/edit/:id", (req, res) => {
-  Post.findByIdAndDelete(req.params.id, (error, post) => {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("This post was destroyed: ", post);
-      res.redirect('/home');
-    }
-  })
+
+app.delete("/showPost/edit/:id", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    // Delete the image from Cloudinary
+    await cloudinary.uploader.destroy(post.cloudinary_id);
+
+    // Delete the post from the database
+    await post.remove();
+
+    console.log("This post was destroyed: ", post);
+    res.redirect('/home');
+
+  } catch (err) {
+    console.log("Oops something went wrong deleting post: ", err);
+    res.redirect(`/home/showPost/${req.params.id}`);
+  }
+
 });
 
 

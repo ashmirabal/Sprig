@@ -2,7 +2,13 @@
     <label for="title">Title</label>
     <input type="text" class="form-control" id="title" name="title" required value="<%= post.title %>">
 </div>
-
+<br>
+<div class="form-group" id="imagePost">
+    <label for="imagePost">Select Image</label>
+    <br>
+    <input type="file"  name="imagePost">
+</div>
+<br>
 <div class="form-group">
     <label for="description">Description</label>
     <textarea type="text" class="form-control" id="description" name="description" required><%= post.description %></textarea>
