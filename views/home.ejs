@@ -1,51 +1,52 @@
+<%- include('./partials/header.ejs', {title: "Home" })%>
 
-<%- include('./partials/header.ejs', {title: "Home"})%>
-
-<%- include('./partials/header.ejs')%>
-  <%- include('./partials/navbar.ejs')%>
-
- 
-    <div class="container" id="LgHomeCard">
-
-      <h1 id="homeWelcome">Welcome To The Sprig Forum</h1>
-      
-      <div class="row mt-5">
-        <div class="col-md-6 offset-md-3">
+  <%- include('./partials/header.ejs')%>
+    <%- include('./partials/navbar.ejs')%>
 
 
-          <span>
-            <a href="/home/new" class="greenBtn">New Post</a>
-          </span>
+      <div class="container" id="LgHomeCard">
 
-          <% posts.forEach(post=> { %>
-            <div class="card mb-4" style="width: 30rem;" id="Posts">
-              <div class="card-body">
-                <h6 id="postDate">
-                  <%=post.date%>
-                </h6>
-                <h4 class="card-title" id="postTitle">
-                  <%= post.title %>
-                </h4>
-                <p class="card-text" id="postDescription">
-                  <%= post.description %>
-                </p>
-                <p class="card-text" id="postCategory">
-                  <% if (post.category==='INDOOR' ) { %>
-                    <img src="/assets/icons8-living-room-62.png" alt="">
-                    <% } else if(post.category==='OUTDOOR' ) { %>
-                      <img src="/assets/icons8-outdoor-64.png" alt="">
-                      <% } %>
-                  <%= post.category %>
-                </p>
-                <a href="home/showPost/<%= post._id %>" class="viewMoreBtn">View More</a>
-                
+        <h1 id="homeWelcome">Welcome To The Sprig Forum</h1>
+
+        <div class="row mt-5">
+          <div class="col-md-6 offset-md-3">
+
+
+            <span>
+              <a href="/home/new" class="greenBtn">New Post</a>
+            </span>
+
+            <% posts.forEach(post=> { %>
+              <div class="card mb-4" style="width: 30rem;" id="Posts">
+                <div class="card-body">
+                  <h6 id="postDate">
+                    <%=post.date%>
+                  </h6>
+                  <h4 class="card-title" id="postTitle">
+                    <%= post.title %>
+                  </h4>
+                  <br>
+                  <img src="<%= post.imagePost %>" alt="" class="postImage">
+                  <br><br>
+                  <p class="card-text" id="postDescription">
+                    <%= post.description %>
+                  </p>
+                  <p class="card-text" id="postCategory">
+                    <% if (post.category==='INDOOR' ) { %>
+                      <img src="/assets/icons8-living-room-62.png" alt="">
+                      <% } else if(post.category==='OUTDOOR' ) { %>
+                        <img src="/assets/icons8-outdoor-64.png" alt="">
+                        <% } %>
+                          <%= post.category %>
+                  </p>
+                  <a href="home/showPost/<%= post._id %>" class="viewMoreBtn">View More</a>
+
+                </div>
               </div>
-            </div>
-            <% }); %>
+              <% }); %>
 
+          </div>
         </div>
       </div>
-    </div>
 
-    <%- include('./partials/footer.ejs')%>
-
+      <%- include('./partials/footer.ejs')%>

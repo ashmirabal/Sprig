@@ -187,7 +187,9 @@ app.get("/showPost/edit/:id", (req, res) =>{
 app.put("/home/:id", (req, res) => {
   Post.findByIdAndUpdate({ _id: req.params.id }, {
     title: req.body.title,
+    
     description: req.body.description,
+
   }, (error, post) => {
     if (error) {
       console.log(error);
