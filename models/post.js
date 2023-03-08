@@ -8,6 +8,12 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    imagePost: {
+        type: String
+    },
+    cloudinary_id: {
+        type: String
+    },
     description: {
         type: String,
         required: true

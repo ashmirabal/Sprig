@@ -22,10 +22,10 @@
           <%= post.category %>
         </p>
         <a href="/showPost/edit/<%= post.id %>" class="info-editBtn">Edit</a>
-        <form action="/showPost/edit/<%= post.id %>?_method=DELETE" method="POST">
+        <form action="/showPost/edit/<%= post.id %>?_method=DELETE" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                  <button type="submit" id="deleteBtn"><img src="/assets/icons8-wilted-flower-48.png"
-                      alt="">Delete</button>
+                  <button type="submit" id="deleteBtn"><img id="compost" src="/assets/icons8-compost-64.png"
+                      alt=""></button>
                 </div>
               </form>
       </div>

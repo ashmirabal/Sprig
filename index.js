@@ -3,12 +3,11 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 //Requiring post.js in the models folder
-const Post = require("./models/post")
+const Post = require("./models/post");
 //Requiring Method-Override so I can Update and Delete where I'm not suppose to.
-const methodOverride = require("method-override")
+const methodOverride = require("method-override");
 
-
-
+process.env.TZ = "GMT";
 
 //Connect to database
 const mongoose = require('mongoose');
@@ -45,6 +44,15 @@ app.use(logger('dev'));
 
 //user Schema
 const { UserModel } = require('./models/UserModel')
+
+
+
+
+//Multer And Cloudinary
+const imageUpload = require("./config/multer");
+const cloudinary = require('./config/cloudinary');
+const path = require('path');
+
 
 // Root Route that redirects to the landingPage.
 app.get('/', (req, res) => {
@@ -116,7 +124,7 @@ app.get("/home/showPost/:id", (req, res) => {
       console.log(error);
       res.send("Ohh No! There Was An Error!")
     } else {
-      console.log(post);
+     // console.log(post);
       res.render("showPost", { post: post })
     }
   })
@@ -124,9 +132,17 @@ app.get("/home/showPost/:id", (req, res) => {
 
 // POST To The Bulletin Board on the HomePage 
 //The Create
-app.post("/home", (req, res) => {
+app.post("/home", imageUpload.single('imagePost') , async (req, res) => {
   const date = new Date();
   const currentDate = date.toLocaleDateString();
+
+  try {
+    const result = await cloudinary.uploader.upload(req.file.path, {invalidate:true});
+    console.log(result);
+  } catch (err) {
+    console.log("Oops something went wrong uploading image: ", err)
+  }
+
 
   let thePost = new Post({
     title: req.body.title,
@@ -140,7 +156,7 @@ app.post("/home", (req, res) => {
       console.log(error);
       res.render("new", { post: thePost });
     } else {
-      console.log(post);
+      //console.log(post);
       res.redirect(`/home/showPost/${post._id}`);
     }
   });

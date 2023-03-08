@@ -213,6 +213,25 @@ body {
 
 
 /* ------------------------------------------------------------------------- */
+#pageTitleDiv{
+    margin-top: 3%;
+    text-align: center;
+}
+
+#pageTitle{
+    text-transform: capitalize;
+    background: linear-gradient(160deg, #ffffff, rgb(255, 255, 255) );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 90px;
+    font-family: 'Berkshire Swash', cursive;
+    text-shadow: rgba(0, 0, 0, 0.301) 5px 5px 10px;
+    
+}
+
+.form-group{
+    font-weight: bold;   
+}
 
 
 #createBtn {
@@ -269,7 +288,7 @@ body {
     color: #fff;
     border-radius: 5px;
     padding: 10px 25px;
-
+    text-decoration: none;
     font-weight: 500;
     background: transparent;
     cursor: pointer;
@@ -297,15 +316,17 @@ body {
         inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
         inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
 }
-
+#compost{
+    height: 40px;
+    width: 40px;
+} 
 
 #deleteBtn {
 
     font-size: 12;
     float: right;
-    width: 70px;
-    height: 70px;
-    color: #f30b0b;
+    width: 60px;
+    height: 60px;
     border-radius: 5px;
 
     background: transparent;
@@ -318,7 +339,7 @@ body {
         4px 4px 5px 0px rgba(0, 0, 0, .1);
     outline: none;
     background: #000000;
-    background: linear-gradient(0deg, #181818 0%, #6e6e6e 100%);
+    background: linear-gradient(0deg, #a1534d 0%,#ca8580 100%);
     border: none;
     
 }
