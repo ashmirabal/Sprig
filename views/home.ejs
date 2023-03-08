@@ -17,7 +17,9 @@
             </span>
 
             <% posts.forEach(post=> { %>
+
               <div class="card mb-4" id="Posts">
+
                 <div class="card-body">
                   <h6 id="postDate">
                     <%=post.date%>
@@ -28,6 +30,7 @@
                   <br>
                   <img src="<%= post.imagePost %>" alt="" class="postImage">
                   <br><br>
+
                   <p class="card-text" id="postDescription">
                     <%= post.description %>
                   </p>
