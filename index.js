@@ -203,15 +203,34 @@ app.put("/home/:id", imageUpload.single('imagePost'), async (req, res) => {
 });
 
 // The Delete Route
-app.delete("/showPost/edit/:id", (req, res) => {
-  Post.findByIdAndDelete(req.params.id, (error, post) => {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("This post was destroyed: ", post);
-      res.redirect('/home');
-    }
-  })
+// app.delete("/showPost/edit/:id", async (req, res) => {
+//   Post.findByIdAndDelete(req.params.id, (error, post) => {
+//     if (error) {
+//       console.log(error);
+//     } else {
+//       console.log("This post was destroyed: ", post);
+//       res.redirect('/home');
+//     }
+//   })
+// });
+
+app.delete("/showPost/edit/:id", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    // Delete the image from Cloudinary
+    await cloudinary.uploader.destroy(post.cloudinary_id);
+
+    // Delete the post from the database
+    await post.remove();
+
+    console.log("This post was destroyed: ", post);
+    res.redirect('/home');
+
+  } catch (err) {
+    console.log("Oops something went wrong deleting post: ", err);
+    res.redirect(`/home/showPost/${req.params.id}`);
+  }
 });
 
 
