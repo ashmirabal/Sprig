@@ -68,7 +68,7 @@ app.get('/signup', (req, res) => {
   res.render("signup")
 });
 
-app.get('/about', (req,res) =>{
+app.get('/about', (req, res) => {
   res.render("about")
 })
 
@@ -99,11 +99,11 @@ app.post('/signup', (req, res) => {
 app.get('/home', (req, res) => {
   //Read from the posts collection 
   // Display using the data coming from the posts
-  Post.find({}, (error, posts)=>{
-    if(error){
+  Post.find({}, (error, posts) => {
+    if (error) {
       console.log(error);
     } else {
-      res.render("home", {posts: posts})
+      res.render("home", { posts: posts })
     }
   })
 });
@@ -124,7 +124,7 @@ app.get("/home/showPost/:id", (req, res) => {
       console.log(error);
       res.send("Ohh No! There Was An Error!")
     } else {
-     // console.log(post);
+      // console.log(post);
       res.render("showPost", { post: post })
     }
   })
@@ -132,7 +132,7 @@ app.get("/home/showPost/:id", (req, res) => {
 
 // POST To The Bulletin Board on the HomePage 
 //The Create
-app.post("/home", imageUpload.single('imagePost') , async (req, res) => {
+app.post("/home", imageUpload.single('imagePost'), async (req, res) => {
   const date = new Date();
   const currentDate = date.toLocaleDateString();
 
@@ -172,23 +172,26 @@ app.post("/home", imageUpload.single('imagePost') , async (req, res) => {
 
 
 // Edit Post Route
-app.get("/showPost/edit/:id", (req, res) =>{
+app.get("/showPost/edit/:id", (req, res) => {
   Post.findById(req.params.id, (error, post) => {
-    if(error) {
+    if (error) {
       console.log(error);
       res.send("Ohh No! There Was An Error!")
     } else {
-      res.render("edit", {post: post});
+      res.render("edit", { post: post });
     }
   })
 })
 
 // The PUT Route for the Edit Post
-app.put("/home/:id", (req, res) => {
+app.put("/home/:id", imageUpload.single('imagePost'), async (req, res) => {
+  const result = await cloudinary.uploader.upload(req.file.path);
   Post.findByIdAndUpdate({ _id: req.params.id }, {
     title: req.body.title,
-    
+    imagePost: result.secure_url,
+    cloudinary_id: result.public_id,
     description: req.body.description,
+    category: req.body.plantCategory
 
   }, (error, post) => {
     if (error) {
@@ -202,7 +205,7 @@ app.put("/home/:id", (req, res) => {
 // The Delete Route
 app.delete("/showPost/edit/:id", (req, res) => {
   Post.findByIdAndDelete(req.params.id, (error, post) => {
-    if(error){
+    if (error) {
       console.log(error);
     } else {
       console.log("This post was destroyed: ", post);
