@@ -8,6 +8,7 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    // Cloudinary requires you to put both the imagePost and the Id to work.
     imagePost: {
         type: String
     },
