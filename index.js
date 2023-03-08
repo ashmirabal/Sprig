@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 //Requiring post.js in the models folder
-const Post = require("./models/post");
+const Post = require("./models/Post");
 //Requiring Method-Override so I can Update and Delete where I'm not suppose to.
 const methodOverride = require("method-override");
 
@@ -137,30 +137,39 @@ app.post("/home", imageUpload.single('imagePost') , async (req, res) => {
   const currentDate = date.toLocaleDateString();
 
   try {
-    const result = await cloudinary.uploader.upload(req.file.path, {invalidate:true});
+    const result = await cloudinary.uploader.upload(req.file.path, { invalidate: true });
     console.log(result);
+
+    let thePost = new Post({
+      title: req.body.title,
+      description: req.body.description,
+      date: currentDate,
+      category: req.body.plantCategory,
+      imagePost: result.secure_url,
+      cloudinary_id: result.public_id
+    });
+
+    thePost.save((error, post) => {
+      if (error) {
+        console.log(error);
+        res.render("new", { post: thePost });
+      } else {
+        //console.log(post);
+        res.redirect(`/home/showPost/${post._id}`);
+      }
+
+    });
+
+
   } catch (err) {
     console.log("Oops something went wrong uploading image: ", err)
   }
 
 
-  let thePost = new Post({
-    title: req.body.title,
-    description: req.body.description,
-    date: currentDate,
-    category: req.body.plantCategory
+}); //Closes route
 
-  });
-  thePost.save((error, post) => {
-    if (error) {
-      console.log(error);
-      res.render("new", { post: thePost });
-    } else {
-      //console.log(post);
-      res.redirect(`/home/showPost/${post._id}`);
-    }
-  });
-});
+
+
 
 // Edit Post Route
 app.get("/showPost/edit/:id", (req, res) =>{
