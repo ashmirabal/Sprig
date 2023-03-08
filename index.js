@@ -203,17 +203,6 @@ app.put("/home/:id", imageUpload.single('imagePost'), async (req, res) => {
 });
 
 // The Delete Route
-// app.delete("/showPost/edit/:id", async (req, res) => {
-//   Post.findByIdAndDelete(req.params.id, (error, post) => {
-//     if (error) {
-//       console.log(error);
-//     } else {
-//       console.log("This post was destroyed: ", post);
-//       res.redirect('/home');
-//     }
-//   })
-// });
-
 app.delete("/showPost/edit/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
