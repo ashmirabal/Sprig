@@ -107,6 +107,11 @@ app.get('/about', (req, res) => {
   res.render("about")
 })
 
+// Contact Route
+app.get('/contactinfo', (req,res)=>{
+  res.render("contactinfo")
+})
+
 //create new user in db
 app.post('/signup', (req, res) => {
   let { fname, lname, username, email, age, city, state, password } = req.body
