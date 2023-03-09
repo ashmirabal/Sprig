@@ -204,7 +204,6 @@ app.post("/home", imageUpload.single('imagePost'), async (req, res) => {
   try {
     const result = await cloudinary.uploader.upload(req.file.path, { invalidate: true });
     console.log(result);
-
     let thePost = new Post({
       title: req.body.title,
       description: req.body.description,
@@ -213,7 +212,6 @@ app.post("/home", imageUpload.single('imagePost'), async (req, res) => {
       imagePost: result.secure_url,
       cloudinary_id: result.public_id
     });
-
     thePost.save((error, post) => {
       if (error) {
         console.log(error);
@@ -222,15 +220,10 @@ app.post("/home", imageUpload.single('imagePost'), async (req, res) => {
         //console.log(post);
         res.redirect(`/home/showPost/${post._id}`);
       }
-
     });
-
-
   } catch (err) {
     console.log("Oops something went wrong uploading image: ", err)
   }
-
-
 }); //Closes route
 
 
