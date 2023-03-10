@@ -226,13 +226,27 @@ body {
 
 
 #postDate{
-    text-align: left;
+    font-size: 22px;
+    font-family: Inria Serif;
+    float: right;
     color: rgba(62, 107, 57);
     font-weight: bold;
+    text-shadow: rgb(248, 248, 248) 1px 1px 2px;
     
 }
 
+#postUserName{
+    font-size: 22px;
+    font-family: Inria Serif;
+    float: left;
+    color: rgba(62, 107, 57);
+    font-weight: bold;
+    text-shadow: rgb(255, 255, 255) 1px 1px 2px;
+}
+
 #postTitle{
+    margin-top: 10%;
+    font-size: 30px;
     text-decoration: underline;
     text-transform: capitalize;
     text-shadow: rgb(0, 0, 0) 2px 2px 5px;
@@ -253,6 +267,7 @@ body {
 }
 
 #postDescription{
+    font-size: 20px;
     border: #3d3d3d8a outset 5px;
     border-radius: 25px;
     padding: 2% 0%;
