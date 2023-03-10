@@ -168,7 +168,7 @@ app.get('/home',checkAuthenticated, (req, res) => {
     if (error) {
       console.log(error);
     } else {
-      console.log(posts)
+      
       res.render("home", { posts: posts })
     }
   })  
@@ -227,7 +227,7 @@ app.post("/home", checkAuthenticated, imageUpload.single('imagePost'), async (re
         console.log(error);
         res.render("new", { post: thePost });
       } else {
-        //console.log(post);
+       
         res.redirect(`/home/showPost/${post._id}`);
       }
     });
