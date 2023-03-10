@@ -93,7 +93,7 @@ app.get('/', (req, res) => {
   res.redirect('landingPage')
 })
 //  The landingPage Route
-app.get('/landingPage', (req, res) => {
+app.get('/landingPage', checkLoggedIn, (req, res) => {
   res.render("landingPage", { error: ""})
 });
 
@@ -168,7 +168,11 @@ app.get('/home',checkAuthenticated, (req, res) => {
     if (error) {
       console.log(error);
     } else {
-      
+      //using the sort() and reverse() method to 
+      //display posts by descending order
+      //otherwise posts automatically sort by ascending order
+      posts.sort().reverse()
+      console.log(posts)
       res.render("home", { posts: posts })
     }
   })  
