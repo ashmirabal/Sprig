@@ -4,6 +4,10 @@ const mongoose = require("mongoose");
 // const currentDate = date.toLocaleDateString();
 
 const postSchema = new mongoose.Schema({
+    postedBy: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User'
+      },
     title: {
         type: String,
         required: true

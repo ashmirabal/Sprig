@@ -172,9 +172,13 @@ app.get('/home',checkAuthenticated, (req, res) => {
       //display posts by descending order
       //otherwise posts automatically sort by ascending order
       posts.sort().reverse()
+      console.log(posts)
       res.render("home", { posts: posts })
     }
-  })
+  })  
+  // Needed to tie a user and be able to drill down into the username.
+  .populate('postedBy')
+    
 });
 
 // New.ejs route where the the new post form is. 
@@ -197,11 +201,16 @@ app.get("/home/showPost/:id",checkAuthenticated, (req, res) => {
       res.render("showPost", { post: post })
     }
   })
+  // Needed to tie a user and be able to drill down into the username.
+  .populate('postedBy')
 })
 
 // POST To The Bulletin Board on the HomePage 
 //The Create
-app.post("/home", imageUpload.single('imagePost'), async (req, res) => {
+app.post("/home", checkAuthenticated, imageUpload.single('imagePost'), async (req, res) => {
+
+ 
+
   const date = new Date();
   const currentDate = date.toLocaleDateString();
 
@@ -209,6 +218,7 @@ app.post("/home", imageUpload.single('imagePost'), async (req, res) => {
     const result = await cloudinary.uploader.upload(req.file.path, { invalidate: true });
     console.log(result);
     let thePost = new Post({
+      postedBy: req.user,
       title: req.body.title,
       description: req.body.description,
       date: currentDate,
@@ -243,6 +253,8 @@ app.get("/showPost/edit/:id", checkAuthenticated, (req, res) => {
       res.render("edit", { post: post });
     }
   })
+  // Needed to tie a user and be able to drill down into the username.
+  .populate('postedBy')
 })
 
 
