@@ -218,18 +218,45 @@ app.post("/home", checkAuthenticated, imageUpload.single('imagePost'), async (re
 
   const date = new Date();
   const currentDate = date.toLocaleDateString();
-
-  try {
-    const result = await cloudinary.uploader.upload(req.file.path, { invalidate: true });
-    console.log(result);
+  //if there is an image
+  // optional chaining will allow the function to move to the else block
+  // if the path does not exist. it short circuits to undefined = falsy value
+  if(req.file?.path){
+    try {
+      const result = await cloudinary.uploader.upload(req.file.path, { invalidate: true });
+      //console.log(result);
+      let thePost = new Post({
+        postedBy: req.user,
+        title: req.body.title,
+        description: req.body.description,
+        date: currentDate,
+        category: req.body.plantCategory,
+        imagePost: result.secure_url,
+        cloudinary_id: result.public_id
+      });
+      thePost.save((error, post) => {
+        if (error) {
+          console.log(error);
+          res.render("new", { post: thePost });
+        } else {
+         
+          res.redirect(`/home/showPost/${post._id}`);
+        }
+      });
+    } catch (err) {
+      console.log("Oops something went wrong uploading image: ", err)
+    }
+  
+    //There is not an image - we need to just make a normal post
+  } else {
     let thePost = new Post({
       postedBy: req.user,
       title: req.body.title,
       description: req.body.description,
       date: currentDate,
       category: req.body.plantCategory,
-      imagePost: result.secure_url,
-      cloudinary_id: result.public_id
+      imagePost: "",
+      cloudinary_id: ""
     });
     thePost.save((error, post) => {
       if (error) {
@@ -240,9 +267,11 @@ app.post("/home", checkAuthenticated, imageUpload.single('imagePost'), async (re
         res.redirect(`/home/showPost/${post._id}`);
       }
     });
-  } catch (err) {
-    console.log("Oops something went wrong uploading image: ", err)
   }
+
+
+
+  
 }); //Closes route
 
 
