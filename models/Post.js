@@ -30,7 +30,12 @@ const postSchema = new mongoose.Schema({
     category:{
         type: String,
         
-    }
+    },
+    // Making comment relation with post
+    comments: [{
+        type: mongoose.Schema.ObjectId,
+        ref: "Comment"
+    }]
 
   
 });

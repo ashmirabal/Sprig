@@ -33,8 +33,46 @@
             <button type="submit" id="deleteBtn"><img id="compost" src="/assets/icons8-compost-64.png" alt=""></button>
           </div>
         </form>
+
+
+        <!-- Creating a comment form for users to comment on posts -->
+        <div class="container mt-6">
+          <div class="container">
+            <form action="/showPost/comment/<%= post.id %>" method="POST">
+              <div class="form-group">
+                <textarea class="form-control mt-6" placeholder="Leave a comment here" name="comment"></textarea>
+              </div>
+              <div class="form-group pt-2">
+                <button class="btn btn-success w-100">Add Comment</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Display comments here-->
+
+        <div class="container pt-5 ">
+          <div class="container">
+            <div class="row commentBox">
+              <!-- for each comments object in the post we will extract author and comment data to display under post -->
+              <% post.comments.forEach((comment)=>{ %>
+                <div class="col-12">
+                  <p>
+                    <strong>
+                      <%=comment.author%>
+                    </strong>
+                    <br>
+                    <%=comment.comment%>
+                  </p>
+                </div>
+                <% }) %>
+            </div>
+          </div>
+
+
+
+        </div>
       </div>
-    </div>
 
 
-    <%- include('./partials/footer.ejs')%>
+      <%- include('./partials/footer.ejs')%>
