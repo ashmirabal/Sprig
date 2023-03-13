@@ -7,6 +7,7 @@ const port = process.env.PORT || 3000;
 //Requiring post.js in the models folder
 const Post = require("./models/Post");
 const User = require('./models/UserModel');
+const Comment = require("./models/Comment")
 
 
 //Requiring Method-Override so I can Update and Delete where I'm not suppose to.
@@ -66,14 +67,16 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-//function/middleware checks to see if a user is logged in and redirects to home page if so
+//function/middleware checks to see if a user is 
+//logged in and redirects to home page if so
 checkLoggedIn = (req, res, next) => {
   if (req.isAuthenticated()) { 
       return res.redirect("/home")
     }
   next()
 }
-//function/middleware for protected routes, will not let user to protected routes if user is not logged in
+//function/middleware for protected routes,
+// will not let user to protected routes if user is not logged in
 checkAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) { return next() }
   res.redirect("/landingPage")
@@ -172,7 +175,7 @@ app.get('/home',checkAuthenticated, (req, res) => {
       //display posts by descending order
       //otherwise posts automatically sort by ascending order
       posts.sort().reverse()
-      console.log(posts)
+      // console.log(posts)
       res.render("home", { posts: posts })
     }
   })  
@@ -203,6 +206,8 @@ app.get("/home/showPost/:id",checkAuthenticated, (req, res) => {
   })
   // Needed to tie a user and be able to drill down into the username.
   .populate('postedBy')
+  //needed to tie comment to post
+  .populate('comments')
 })
 
 // POST To The Bulletin Board on the HomePage 
@@ -297,6 +302,43 @@ app.delete("/showPost/edit/:id", async (req, res) => {
     res.redirect(`/home/showPost/${req.params.id}`);
   }
 
+});
+
+
+//Comment route
+app.post("/showPost/comment/:id",checkAuthenticated, (req,res) => {
+
+  // console.log(req.params.id);
+  // console.log(req.body.comment);
+  // console.log(req.user.username);
+
+  //creating variable for new comment object with author and comment information
+  const comment = new Comment({
+    author: req.user.username,
+    comment: req.body.comment
+  });
+  //using save method to save comment object to database
+  comment.save((err, result) => {
+    if(err){
+      console.log(err)
+    } else {
+      //using findById function to target specific post
+      //then we will push comment to data array and save it
+      Post.findById(req.params.id, (err, post) => {
+        if(err){
+          console.log(err)
+        } else {
+          post.comments.push(result);
+          post.save()
+
+          // console.log("====comments===")
+          // console.log(post.comments)
+          //redirecting to showPost route for specified post to display newly added comment
+          res.redirect(`/home/showPost/${req.params.id}`)
+        }
+      })
+    }
+  })
 });
 
 
