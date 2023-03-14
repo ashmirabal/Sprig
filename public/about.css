@@ -2,7 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body{
   background-color: #87AA8F;
+
 }
 
 .main {
@@ -21,6 +25,7 @@
   margin-left: -20px;
   border-right: darkslategray 10px groove;
   height: 100vh;
+  background-attachment: fixed;
 }
 
 
@@ -88,4 +93,82 @@ p:hover {
 
 span:hover:before {
   transform: translateY(10px)
+}
+
+/* Nav-Bar CSS */
+
+#navBar{
+  background-image: linear-gradient(#727c83, #A6B3BD, #747e85);
+  box-shadow: #1b1b1b 0 4px 10px;
+}
+
+#navLogo{
+  box-shadow: black 2px 2px 4px;
+  padding: 3%;
+  border-radius: 100%;
+  background-color: #c59c99;
+  height: 6vh;
+  margin-left: 6%;
+}
+
+#navLogoWord{
+  margin-right: 2%;
+  font-size: 4vh;
+ color: whitesmoke;
+ text-shadow: black 2px 2px 4px;
+  font-family: 'Berkshire Swash', cursive;
+}
+
+.nav-link{
+  color: #33363F;
+  font-weight: bold;
+  text-shadow: whitesmoke 2px 2px 4px;
+  font-size: 3vh;
+  font-family: Inria Serif;
+}
+
+#logOutBtn{
+  margin: 0 2%;
+  float: right;
+  text-align: center;
+  color: #fff;
+  border-radius: 50px;
+  font-family: Inria Serif;
+  padding: 5px 15px;
+  font-size: larger;
+  text-decoration: none;
+  cursor:pointer;
+  transition: all 0.3s ease;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+      7px 7px 20px 0px rgba(0, 0, 0, .1),
+      4px 4px 5px 0px rgba(0, 0, 0, .1);
+  outline: none;
+  background: #a1534d;
+  background: linear-gradient(0deg, #a1534d 0%, #ca8580 100%);
+  border: none;
+}
+#logOutBtn:before {
+  height: 0%;
+  width: 2px;
+}
+
+#logOutBtn:hover {
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .5),
+      -4px -4px 6px 0 rgba(116, 125, 136, .5),
+      inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
+      inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+
+#exitImg{
+  height: 3vh;
+}
+
+.dropdown-menu{
+  background-image: linear-gradient(#727c83, #A6B3BD, #747e85);
+  box-shadow: #1b1b1b 0 4px 10px;
+  color: #33363F;
+  font-weight: bold;
+  text-shadow: whitesmoke 2px 2px 4px;
+  font-size: 3vh;
+  font-family: Inria Serif;
 }
