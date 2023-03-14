@@ -133,7 +133,7 @@ app.post('/signup', (req, res) => {
       //Think back to mongodb projects when you had to drill down into the error messages.
       // You can pass it as I did here but will need to pass and empty string on /landingpage  see line 73;
       // Else you will get an ejs error
-      res.render("landingPage.ejs", { error: "Signup Not successful"})
+      res.render("error.ejs", { error: "Signup Not successful. Please make sure you are meeting the user requirements."})
     } else {
       passport.authenticate("local")(req, res, function(){
           res.redirect('/home');
