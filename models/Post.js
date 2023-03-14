@@ -4,10 +4,15 @@ const mongoose = require("mongoose");
 // const currentDate = date.toLocaleDateString();
 
 const postSchema = new mongoose.Schema({
+    postedBy: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User'
+      },
     title: {
         type: String,
         required: true
     },
+    // Cloudinary requires you to put both the imagePost and the Id to work.
     imagePost: {
         type: String
     },
@@ -25,7 +30,12 @@ const postSchema = new mongoose.Schema({
     category:{
         type: String,
         
-    }
+    },
+    // Making comment relation with post
+    comments: [{
+        type: mongoose.Schema.ObjectId,
+        ref: "Comment"
+    }]
 
   
 });

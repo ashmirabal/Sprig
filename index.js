@@ -7,6 +7,7 @@ const port = process.env.PORT || 3000;
 //Requiring post.js in the models folder
 const Post = require("./models/Post");
 const User = require('./models/UserModel');
+const Comment = require("./models/Comment")
 
 
 //Requiring Method-Override so I can Update and Delete where I'm not suppose to.
@@ -66,14 +67,16 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-//function/middleware checks to see if a user is logged in and redirects to home page if so
+//function/middleware checks to see if a user is 
+//logged in and redirects to home page if so
 checkLoggedIn = (req, res, next) => {
   if (req.isAuthenticated()) { 
       return res.redirect("/home")
     }
   next()
 }
-//function/middleware for protected routes, will not let user to protected routes if user is not logged in
+//function/middleware for protected routes,
+// will not let user to protected routes if user is not logged in
 checkAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) { return next() }
   res.redirect("/landingPage")
@@ -93,7 +96,7 @@ app.get('/', (req, res) => {
   res.redirect('landingPage')
 })
 //  The landingPage Route
-app.get('/landingPage', (req, res) => {
+app.get('/landingPage', checkLoggedIn, (req, res) => {
   res.render("landingPage", { error: ""})
 });
 
@@ -173,9 +176,17 @@ app.get('/home',checkAuthenticated, (req, res) => {
     if (error) {
       console.log(error);
     } else {
+      //using the sort() and reverse() method to 
+      //display posts by descending order
+      //otherwise posts automatically sort by ascending order
+      posts.sort().reverse()
+      // console.log(posts)
       res.render("home", { posts: posts })
     }
-  })
+  })  
+  // Needed to tie a user and be able to drill down into the username.
+  .populate('postedBy')
+    
 });
 
 // New.ejs route where the the new post form is. 
@@ -198,44 +209,74 @@ app.get("/home/showPost/:id",checkAuthenticated, (req, res) => {
       res.render("showPost", { post: post })
     }
   })
+  // Needed to tie a user and be able to drill down into the username.
+  .populate('postedBy')
+  //needed to tie comment to post
+  .populate('comments')
 })
 
 // POST To The Bulletin Board on the HomePage 
 //The Create
-app.post("/home", imageUpload.single('imagePost'), async (req, res) => {
+app.post("/home", checkAuthenticated, imageUpload.single('imagePost'), async (req, res) => {
+
+ 
+
   const date = new Date();
   const currentDate = date.toLocaleDateString();
-
-  try {
-    const result = await cloudinary.uploader.upload(req.file.path, { invalidate: true });
-    console.log(result);
-
+  //if there is an image
+  // optional chaining will allow the function to move to the else block
+  // if the path does not exist. it short circuits to undefined = falsy value
+  if(req.file?.path){
+    try {
+      const result = await cloudinary.uploader.upload(req.file.path, { invalidate: true });
+      //console.log(result);
+      let thePost = new Post({
+        postedBy: req.user,
+        title: req.body.title,
+        description: req.body.description,
+        date: currentDate,
+        category: req.body.plantCategory,
+        imagePost: result.secure_url,
+        cloudinary_id: result.public_id
+      });
+      thePost.save((error, post) => {
+        if (error) {
+          console.log(error);
+          res.render("new", { post: thePost });
+        } else {
+         
+          res.redirect(`/home/showPost/${post._id}`);
+        }
+      });
+    } catch (err) {
+      console.log("Oops something went wrong uploading image: ", err)
+    }
+  
+    //There is not an image - we need to just make a normal post
+  } else {
     let thePost = new Post({
+      postedBy: req.user,
       title: req.body.title,
       description: req.body.description,
       date: currentDate,
       category: req.body.plantCategory,
-      imagePost: result.secure_url,
-      cloudinary_id: result.public_id
+      imagePost: "",
+      cloudinary_id: ""
     });
-
     thePost.save((error, post) => {
       if (error) {
         console.log(error);
         res.render("new", { post: thePost });
       } else {
-        //console.log(post);
+       
         res.redirect(`/home/showPost/${post._id}`);
       }
-
     });
-
-
-  } catch (err) {
-    console.log("Oops something went wrong uploading image: ", err)
   }
 
 
+
+  
 }); //Closes route
 
 
@@ -251,6 +292,8 @@ app.get("/showPost/edit/:id", checkAuthenticated, (req, res) => {
       res.render("edit", { post: post });
     }
   })
+  // Needed to tie a user and be able to drill down into the username.
+  .populate('postedBy')
 })
 
 
@@ -293,6 +336,43 @@ app.delete("/showPost/edit/:id", async (req, res) => {
     res.redirect(`/home/showPost/${req.params.id}`);
   }
 
+});
+
+
+//Comment route
+app.post("/showPost/comment/:id",checkAuthenticated, (req,res) => {
+
+  // console.log(req.params.id);
+  // console.log(req.body.comment);
+  // console.log(req.user.username);
+
+  //creating variable for new comment object with author and comment information
+  const comment = new Comment({
+    author: req.user.username,
+    comment: req.body.comment
+  });
+  //using save method to save comment object to database
+  comment.save((err, result) => {
+    if(err){
+      console.log(err)
+    } else {
+      //using findById function to target specific post
+      //then we will push comment to data array and save it
+      Post.findById(req.params.id, (err, post) => {
+        if(err){
+          console.log(err)
+        } else {
+          post.comments.push(result);
+          post.save()
+
+          // console.log("====comments===")
+          // console.log(post.comments)
+          //redirecting to showPost route for specified post to display newly added comment
+          res.redirect(`/home/showPost/${req.params.id}`)
+        }
+      })
+    }
+  })
 });
 
 
