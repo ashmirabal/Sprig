@@ -440,6 +440,39 @@ app.post("/showPost/comment/:id",checkAuthenticated, (req,res) => {
   })
 });
 
+//Delete comment route
+// need to know both the postId and the commentId to be able to delete the comment from posts collection
+// You can delete a comment from posts using the findByIdAndUpdate method and $pull operator.
+// also need to delete comment from comment collection
+app.delete("/showPost/comment/:postId/:commentId", async function (req, res) {
+  try {
+    //update the post we are deleting comment from by using req.param values
+    const post = await Post.findByIdAndUpdate(
+      req.params.postId,
+      {
+        // The $pull operator removes from an existing array 
+        //all instances of a value or values that match a specified condition.
+        //pulling comment id using req.params
+        $pull: { comments: req.params.commentId },
+      },
+      // this will return the object after delete update is applied and not as it was before (default behavior)
+      { new: true }
+    );
+      //if post does not exist
+    if (!post) {
+      return res.status(400).send("Post not found");
+    }
+    //using findByIdAndDelete method to remove comment from post database
+    //targeting comment with value from req.params
+    await Comment.findByIdAndDelete(req.params.commentId);
+
+    //will redirect to same page but with updated comments
+    res.redirect(`/home/showPost/${req.params.postId}`);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Something went wrong");
+  }
+});
 
 
 app.listen(port, () => console.log(`App listening on port ${port}`));

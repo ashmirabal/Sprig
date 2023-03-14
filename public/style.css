@@ -316,10 +316,25 @@ body {
     border: 1px solid #005600;
     border-radius: 10px;
     color: #005600;
-    text-align: left;
+    /* text-align: left; */
 }
 
+.box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+#btn--delete {
+    border-radius: 12px;
+}
+
+.commentDelete {
+    width: 24px;
+    height: 24px;
+    align-self: center;
+    stroke: #005600;
+}
 
 /* ------------------------------------------------------------------------- */
 #pageTitleDiv {
