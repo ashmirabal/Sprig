@@ -299,8 +299,29 @@ app.get("/showPost/edit/:id", checkAuthenticated, (req, res) => {
 
 // The PUT Route for the Edit Post
 app.put("/home/:id", imageUpload.single('imagePost'), async (req, res) => {
-  const result = await cloudinary.uploader.upload(req.file.path);
-  Post.findByIdAndUpdate({ _id: req.params.id }, {
+
+
+  // const result = await cloudinary.uploader.upload(req.file.path);
+  // Post.findByIdAndUpdate({ _id: req.params.id }, {
+  //   title: req.body.title,
+  //   imagePost: result.secure_url,
+  //   cloudinary_id: result.public_id,
+  //   description: req.body.description,
+  //   category: req.body.plantCategory
+
+  // }, (error, post) => {
+  //   if (error) {
+  //     console.log(error);
+  //   } else {
+  //     res.redirect(`/home/showPost/${post._id}`)
+  //   }
+  // })
+
+  //using optional chaining so that if there is an image,
+  //we will update all data including image data
+  if(req.file?.path){
+    const result = await cloudinary.uploader.upload(req.file.path);
+    Post.findByIdAndUpdate({ _id: req.params.id }, {
     title: req.body.title,
     imagePost: result.secure_url,
     cloudinary_id: result.public_id,
@@ -314,27 +335,71 @@ app.put("/home/:id", imageUpload.single('imagePost'), async (req, res) => {
       res.redirect(`/home/showPost/${post._id}`)
     }
   })
+  //if not, we will short circuit and update data and leave image data fields empty.
+} else {
+  Post.findByIdAndUpdate({ _id: req.params.id }, {
+    title: req.body.title,
+    imagePost:"",
+    cloudinary_id: "",
+    description: req.body.description,
+    category: req.body.plantCategory
+
+  }, (error, post) => {
+    if (error) {
+      console.log(error);
+    } else {
+      res.redirect(`/home/showPost/${post._id}`)
+    }
+  })
+}
+
 });
 
 // The Delete Route
 
 app.delete("/showPost/edit/:id", async (req, res) => {
+  // try {
+  //   const post = await Post.findById(req.params.id);
+
+  //   // Delete the image from Cloudinary
+  //   await cloudinary.uploader.destroy(post.cloudinary_id);
+
+  //   // Delete the post from the database
+  //   await post.remove();
+
+  //   console.log("This post was destroyed: ", post);
+  //   res.redirect('/home');
+
+  // } catch (err) {
+  //   console.log("Oops something went wrong deleting post: ", err);
+  //   res.redirect(`/home/showPost/${req.params.id}`);
+  // }
+
   try {
     const post = await Post.findById(req.params.id);
+    //If there is not cloudinary_id (image id) then delete normally
+    if(!post.cloudinary_id){
+      await post.remove();
 
-    // Delete the image from Cloudinary
-    await cloudinary.uploader.destroy(post.cloudinary_id);
+      console.log("This post was destroyed: ", post);
+      res.redirect('/home');
+    } else {
 
-    // Delete the post from the database
-    await post.remove();
-
-    console.log("This post was destroyed: ", post);
-    res.redirect('/home');
-
-  } catch (err) {
-    console.log("Oops something went wrong deleting post: ", err);
-    res.redirect(`/home/showPost/${req.params.id}`);
-  }
+      // Delete the image from Cloudinary
+      await cloudinary.uploader.destroy(post.cloudinary_id);
+      
+      // Delete the post from the database
+      await post.remove();
+      
+      console.log("This post was destroyed: ", post);
+      res.redirect('/home');
+    }
+      
+    } catch (err) {
+      console.log("Oops something went wrong deleting post: ", err);
+      res.redirect(`/home/showPost/${req.params.id}`);
+    }
+    
 
 });
 
