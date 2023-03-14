@@ -1,0 +1,22 @@
+<%- include('./partials/header/ejs', {title: "Contact Us", stylesheet: 'style.css'})%>
+<!-- <%- include('./partials/navbar.ejs')%> -->
+
+<div id="contact">
+    <p class="contactheader">Contact Us</p>
+    <form class="contactform" action="/contactform" method="POST">
+        <div class="contactbox"> Full Name:
+            <input type="text" name="fullname" id="fullname">
+        </div>
+        <div class="contactbox"> Email:
+            <input type="email" name="email" id="email">
+        </div>
+        <div class="contactbox"> Phone Number:
+            <input type="tel" name="phone" id="phone">
+        </div>
+        <div class="contactbox"> How can we help:
+            <input type="text" name="message" id="message">
+        </div>
+    </form>
+</div>
+
+<%- include('./partials/footer.ejs')%>
