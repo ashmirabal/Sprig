@@ -1,17 +1,17 @@
 <%- include('./partials/header.ejs', {title: "New Post"})%>
     <%- include('./partials/navbar.ejs')%>
 
-    <div id="pageTitleDiv" >
-        <h1 id="pageTitle">Create a new post!</h1>
+        <div id="pageTitleDiv">
+            <h1 id="pageTitle">Create a new post!</h1>
 
-        <div class="card mb-4" style="width: 30rem;" id="Posts">
-            <div class="card-body">
-                <form action="/home" method="POST" enctype="multipart/form-data">
-                    <%- include("partials/post_form") %>
-                </form>
+            <div class="card mb-4" style="width: 30rem;" id="Posts">
+                <div class="card-body">
+                    <form action="/home" method="POST" enctype="multipart/form-data">
+                        <%- include("partials/post_form") %>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>    
 
 
         <%- include('./partials/footer.ejs')%>
