@@ -1,0 +1,74 @@
+<%- include('./partials/header.ejs', {title: "Profile"}) %>
+<%- include('./partials/navbar.ejs')%>
+
+<div class="col-lg-6" id="viewProfile">
+    <% console.log(user) %>
+    <div class="card mb-4">
+        <div class="card-body" id="vpcardbody">
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="mb-0">First Name</p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="text-dark mb-0"><%= user.fname %></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="mb-0">Last Name</p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="text-dark mb-0"><%= user.lname %></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="mb-0">Username</p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="text-dark mb-0"><%= user.username %></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="text-dark mb-0"><%= user.email %></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="mb-0">Age</p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="text-dark mb-0"><%= user.age %></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="mb-0">City</p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="text-dark mb-0"><%= user.city %></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="mb-0">State</p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="text-dark mb-0"><%= user.state %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('./partials/footer.ejs')%>

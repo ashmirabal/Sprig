@@ -727,4 +727,25 @@ body {
             translate3d(-400px, 680px, 0) rotate(0deg);
         opacity: 0;
     }
+} 
+
+/* VIEW PROFILE */
+#viewProfile {
+    
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#vpcardbody {
+    background-color: #ca8580;
+    font-size: 18px;
+}
+
+/* CONTACT PAGE */
+.contactinfo {
+    background-color: #ca8580;
+    text-align: center;
+    margin: auto;
+    padding: 40px;
 }
