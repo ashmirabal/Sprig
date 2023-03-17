@@ -438,7 +438,6 @@ app.post("/showPost/comment/:id",checkAuthenticated, (req,res) => {
   })
 });
 
-<<<<<<< HEAD
 //Delete comment route
 // need to know both the postId and the commentId to be able to delete the comment from posts collection
 // You can delete a comment from posts using the findByIdAndUpdate method and $pull operator.
@@ -473,7 +472,6 @@ app.delete("/showPost/comment/:postId/:commentId", async function (req, res) {
   }
 });
 
-=======
 //View Profile Route
 app.get('/viewProfile', checkAuthenticated, (req, res)=>{
   User.findById(req.user, (error, user)=>{
@@ -486,6 +484,5 @@ app.get('/viewProfile', checkAuthenticated, (req, res)=>{
     }
   })
 })
->>>>>>> mbcss
 
 app.listen(port, () => console.log(`App listening on port ${port}`));
