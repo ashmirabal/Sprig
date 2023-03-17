@@ -6,6 +6,7 @@ const port = process.env.PORT || 3000;
 
 //Requiring post.js in the models folder
 const Post = require("./models/Post");
+//require userSchema from models folder
 const User = require('./models/UserModel');
 const Comment = require("./models/Comment")
 
@@ -48,7 +49,7 @@ app.use(express.urlencoded({ extended: true }))
 
 // The Logger
 const logger = require('morgan');
-const UserModel = require('./models/UserModel');
+// const UserModel = require('./models/UserModel');
 // Tell the app to use the logger
 app.use(logger('dev'));
 
@@ -119,7 +120,7 @@ app.get('/contactinfo', (req,res)=>{
 app.post('/signup', (req, res) => {
   let { fname, lname, username, email, age, city, state, password } = req.body
   // Build user object
-  let user = new UserModel({
+  let user = new User({
     fname,
     lname,
     username,
@@ -437,6 +438,7 @@ app.post("/showPost/comment/:id",checkAuthenticated, (req,res) => {
   })
 });
 
+<<<<<<< HEAD
 //Delete comment route
 // need to know both the postId and the commentId to be able to delete the comment from posts collection
 // You can delete a comment from posts using the findByIdAndUpdate method and $pull operator.
@@ -471,5 +473,19 @@ app.delete("/showPost/comment/:postId/:commentId", async function (req, res) {
   }
 });
 
+=======
+//View Profile Route
+app.get('/viewProfile', checkAuthenticated, (req, res)=>{
+  User.findById(req.user, (error, user)=>{
+    if(error){
+      console.log(error);
+      res.render("error.ejs", {error: "unable to view profile"})
+    } else {
+      console.log(user)
+      res.render("viewProfile.ejs", { user: user })
+    }
+  })
+})
+>>>>>>> mbcss
 
 app.listen(port, () => console.log(`App listening on port ${port}`));
