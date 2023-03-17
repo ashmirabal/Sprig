@@ -1,7 +1,11 @@
 <%- include('./partials/header.ejs', {title: "Error"}) %>
 <%- include('./partials/navbar.ejs')%>
 
-<h1><%= error %></h1>
-
+<div id="error">
+    <div id="errorheader">Uh oh, something went wrong. Please read below for more information.</div>
+    <br>
+    <!-- <div id="errormessage"> error %></div> -->
+    <div id="errormessage">Dont forget to uncomment the above line</div>
+</div>
 
 <%- include('./partials/footer.ejs')%>

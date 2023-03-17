@@ -750,11 +750,13 @@ body {
     padding: 20px;
     margin-left: auto;
     margin-right: auto;
+    display: block;
 }
 
 #vpcardbody {
     background-color: #ca8580;
     font-size: 18px;
+    font-weight: bold;
 }
 
 /* CONTACT PAGE */
@@ -762,5 +764,33 @@ body {
     background-color: #ca8580;
     text-align: center;
     margin: auto;
-    padding: 40px;
+    width: 40%;
+    margin-top: 5%;
+    padding: 1%;
+    border-radius: 1%;
 }
+
+/* ERROR PAGE */
+#error {
+    padding-top: 100px;
+    border: #000000 2px;
+    background-color: #555555;
+    border: rgb(156, 156, 156) 5px;
+    box-shadow: 2px 3px 20px black;
+    border-radius: 25px;
+    text-align: center;
+    width: auto;
+}
+
+#errorheader {
+    font-size: 26px;
+    font-weight: bold;
+    color: #a1534d;
+}
+
+#errormessage {
+    font-size: 24px;
+    font-weight: bold;
+    color: #a1534d;
+}
+

@@ -6,7 +6,7 @@
     <div class="card mb-4">
         <div class="card-body" id="vpcardbody">
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <p class="mb-0">First Name</p>
                 </div>
                 <div class="col-sm-6">
@@ -15,7 +15,7 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <p class="mb-0">Last Name</p>
                 </div>
                 <div class="col-sm-6">
@@ -24,7 +24,7 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <p class="mb-0">Username</p>
                 </div>
                 <div class="col-sm-6">
@@ -33,7 +33,7 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <p class="mb-0">Email</p>
                 </div>
                 <div class="col-sm-6">
@@ -42,7 +42,7 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <p class="mb-0">Age</p>
                 </div>
                 <div class="col-sm-6">
@@ -51,7 +51,7 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <p class="mb-0">City</p>
                 </div>
                 <div class="col-sm-6">
@@ -60,13 +60,26 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <p class="mb-0">State</p>
                 </div>
                 <div class="col-sm-6">
                     <p class="text-dark mb-0"><%= user.state %></p>
                 </div>
             </div>
+            <hr>
+            <br>
+        <div class="d-flex justify-content-center mb-2">
+            <button type="button" class="btn btn-outline-dark ms-1" onclick="alert('This feature is not yet available')">Edit Account</button>
+            <button type="button" class="btn btn-outline-dark ms-1" onclick="confirm(`<%= user.fname %>, are you sure you want to delete your account?`)">Delete Account
+            <% function confirmDelete() { %>
+                <% if (confirm() == true) { %>
+                    <% delete req.user %>
+                <% } else { %>
+                    <% alert("We're glad you decided to stay") %>
+            <% }} %> 
+        </button>
+        </div>
         </div>
     </div>
 </div>
