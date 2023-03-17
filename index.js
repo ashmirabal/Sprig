@@ -106,6 +106,11 @@ app.get('/signup', (req, res) => {
   res.render("signup")
 });
 
+// Error route for easy testing, but not needed
+app.get('/error', (req, res) => {
+  res.render("error")
+});
+
 // About Route
 app.get('/about', (req, res) => {
   res.render("about")
@@ -137,7 +142,7 @@ app.post('/signup', (req, res) => {
       //Think back to mongodb projects when you had to drill down into the error messages.
       // You can pass it as I did here but will need to pass and empty string on /landingpage  see line 73;
       // Else you will get an ejs error
-      res.render("error.ejs", { error: "Signup Not successful. Please make sure you are meeting the user requirements."})
+      res.render("error.ejs", { error: "Account creation was not successful. You may not be meeting the requirements or that username may already be taken."})
     } else {
       passport.authenticate("local")(req, res, function(){
           res.redirect('/home');
@@ -438,7 +443,6 @@ app.post("/showPost/comment/:id",checkAuthenticated, (req,res) => {
   })
 });
 
-<<<<<<< HEAD
 //Delete comment route
 // need to know both the postId and the commentId to be able to delete the comment from posts collection
 // You can delete a comment from posts using the findByIdAndUpdate method and $pull operator.
@@ -473,7 +477,6 @@ app.delete("/showPost/comment/:postId/:commentId", async function (req, res) {
   }
 });
 
-=======
 //View Profile Route
 app.get('/viewProfile', checkAuthenticated, (req, res)=>{
   User.findById(req.user, (error, user)=>{
@@ -486,6 +489,7 @@ app.get('/viewProfile', checkAuthenticated, (req, res)=>{
     }
   })
 })
->>>>>>> mbcss
+
+
 
 app.listen(port, () => console.log(`App listening on port ${port}`));
