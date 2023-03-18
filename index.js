@@ -6,8 +6,9 @@ const port = process.env.PORT || 3000;
 
 //Requiring post.js in the models folder
 const Post = require("./models/Post");
-//require userSchema from models folder
+//require userSchema model
 const User = require('./models/UserModel');
+//require Commment DB model
 const Comment = require("./models/Comment")
 
 
@@ -479,17 +480,54 @@ app.delete("/showPost/comment/:postId/:commentId", async function (req, res) {
 
 //View Profile Route
 app.get('/viewProfile', checkAuthenticated, (req, res)=>{
+  //find the currently logged in user
   User.findById(req.user, (error, user)=>{
     if(error){
-      console.log(error);
+      // console.log(error);
       res.render("error.ejs", {error: "unable to view profile"})
     } else {
       console.log(user)
+      // populate user info to viewProfile page
       res.render("viewProfile.ejs", { user: user })
     }
   })
 })
 
+//Edit Profile Route
+app.get('/editProfile', checkAuthenticated, (req, res)=>{
+  //find the currently logged in user
+  User.findById(req.user, (error, user)=>{
+    if(error){
+      // console.log(error);
+      res.render("error.ejs", {error: "unable to edit profile"})
+    } else {
+      console.log(user)
+      // populate user info to viewProfile page
+      res.render("editProfile.ejs", { user: user })
+    }
+  })
+})
+
+// Edit user profile user in db
+app.post('/editProfile', checkAuthenticated, (req, res) => {
+  let { fname, lname, username, email, age, city, state} = req.body
+  // update user object
+  User.findByIdAndUpdate(req.user.id, {
+    fname, 
+    lname,
+    username,
+    email,
+    age,
+    city, 
+    state,
+  }, (error) => {
+    if(error){
+      console.log("Error updating profile", error)
+    } else {
+      res.redirect("/home")
+    }
+  })
+})
 
 
 app.listen(port, () => console.log(`App listening on port ${port}`));
