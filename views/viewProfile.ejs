@@ -70,7 +70,8 @@
             <hr>
             <br>
         <div class="d-flex justify-content-center mb-2">
-            <button type="button" class="btn btn-outline-dark ms-1" onclick="alert('This feature is not yet available')">Edit Account</button>
+            <!-- <button type="submit" class="btn btn-outline-dark ms-1" href="/editProfile">Edit Profile</button> -->
+            <a href="/editProfile" role="button" class="btn btn-outline-dark ms-1">Edit Profile</a>
             <button type="button" class="btn btn-outline-dark ms-1" onclick="confirm(`<%= user.fname %>, are you sure you want to delete your account?`)">Delete Account
             <% function confirmDelete() { %>
                 <% if (confirm() == true) { %>
