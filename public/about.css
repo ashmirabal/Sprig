@@ -63,8 +63,10 @@ body {
   position: relative;
   display: inline-block;
   font-size: 6rem;
+  /* linear-gradient is used when transitioning two or more colors */
   background: linear-gradient(to bottom, #000, #000 60%, #fff 60%, #fff 100%);
   background-clip: text;
+  /* 'webkit' is used in the CSS syntax for rendering content in Safari and Chrome browsers */
   -webkit-background-clip: text;
   color: transparent;
   background-repeat: no-repeat;
@@ -92,6 +94,7 @@ p:hover {
 }
 
 span:hover:before {
+  /* repositions an element vertically on the 2D plane */
   transform: translateY(10px)
 }
 

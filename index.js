@@ -14,6 +14,7 @@ const Comment = require("./models/Comment")
 
 //Requiring Method-Override so I can Update and Delete where I'm not suppose to.
 const methodOverride = require("method-override")
+//packages required for authentication (logging in/logging out)
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const passportLocalMongoose = require('passport-local-mongoose');
