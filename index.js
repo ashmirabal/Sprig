@@ -108,9 +108,9 @@ app.get('/signup', (req, res) => {
 });
 
 // Error route for easy testing, but not needed
-app.get('/error', (req, res) => {
-  res.render("error")
-});
+// app.get('/error', checkLoggin, (req, res) => {
+//   res.render("error")
+// });
 
 // About Route
 app.get('/about', (req, res) => {

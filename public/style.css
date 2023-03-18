@@ -762,24 +762,38 @@ body {
 /* CONTACT PAGE */
 .contactinfo {
     background-color: #ca8580;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px darkslategray,
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 150px;
+    margin-bottom: 300px;
+    padding: 30px;
+    border-radius: 20px;
     text-align: center;
-    margin: auto;
-    width: 40%;
-    margin-top: 5%;
-    padding: 1%;
-    border-radius: 1%;
 }
 
 /* ERROR PAGE */
 #error {
-    padding-top: 100px;
+    /* padding-top: 100px;
     border: #000000 2px;
     background-color: #555555;
     border: rgb(156, 156, 156) 5px;
     box-shadow: 2px 3px 20px black;
     border-radius: 25px;
-    text-align: center;
-    width: auto;
+    width: auto; */
+    background-color: #ca8580;
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px #157207,
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+  max-width: 1000px;
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 150px;
+  margin-bottom: 300px;
+  padding: 10px;
+  border-radius: 20px;
+  text-align: center;
 }
 
 #errorheader {
@@ -792,5 +806,10 @@ body {
     font-size: 24px;
     font-weight: bold;
     color: #a1534d;
+}
+
+/* I need to push the footer to the bottom :( */
+#footer {
+    margin-bottom: 20px;
 }
 
