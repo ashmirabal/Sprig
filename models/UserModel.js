@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 //Validator for email address
 const validator = require('validator');
-//validator for unique?
+// the unique validator will check for duplicate database entries
+// and report them just like any other validation error
 const uniqueValidator = require('mongoose-unique-validator');
 const passportLocalMongoose = require('passport-local-mongoose')
 
