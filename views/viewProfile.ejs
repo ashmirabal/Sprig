@@ -5,6 +5,7 @@
     <% console.log(user) %>
     <div class="card mb-4">
         <div class="card-body" id="vpcardbody">
+            <br>
             <div class="row">
                 <div class="col-sm-4">
                     <p class="mb-0">First Name</p>
@@ -70,15 +71,15 @@
             <hr>
             <br>
         <div class="d-flex justify-content-center mb-2">
-            <!-- <button type="submit" class="btn btn-outline-dark ms-1" href="/editProfile">Edit Profile</button> -->
             <a href="/editProfile" role="button" class="btn btn-outline-dark ms-1">Edit Profile</a>
             <button type="button" class="btn btn-outline-dark ms-1" onclick="confirm(`<%= user.fname %>, are you sure you want to delete your account?`)">Delete Account
-            <% function confirmDelete() { %>
+            <!-- this fundtion does not work -->
+                <!-- <% function confirmDelete() { %>
                 <% if (confirm() == true) { %>
                     <% delete req.user %>
                 <% } else { %>
                     <% alert("We're glad you decided to stay") %>
-            <% }} %> 
+            <% }} %>  -->
         </button>
         </div>
         </div>

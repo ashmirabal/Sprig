@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
-    <title>Sprig</title>
+    <title>Sprig - View Profile</title>
 
 </head>
 
@@ -27,13 +27,13 @@
 <%- include('./partials/navbar.ejs')%>
 
 
-<div id="signup" class="mt-4">
+<div id="editprofile" class="mt-4">
   <p class="signup-title">Edit Your Profile</p>
 <form class="form" action="/editProfile?id=<% user._id %>" method="POST">
 
   <div class="form-group row">
     <div class="col-sm-10 d-inline-flex p-2"> 
-        <label for="fname">First name:</label>
+        <label class="editlabel" for="fname">First name:</label>
       <input type="text" class="form-control p-2" name="fname" id="firstname" value="<%= user.fname %>"> <i class="fa-solid fa-user"></i>
     </div>
   </div>
