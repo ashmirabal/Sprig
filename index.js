@@ -224,14 +224,14 @@ app.get("/home/showPost/:id",checkAuthenticated, (req, res) => {
 // POST To The Bulletin Board on the HomePage 
 //The Create
 app.post("/home", checkAuthenticated, imageUpload.single('imagePost'), async (req, res) => {
-
-
+  //We bring in our muler middleware function to handle the image coming in from the post
   const date = new Date();
   const currentDate = date.toLocaleDateString();
   //if there is an image
   // optional chaining will allow the function to move to the else block
   // if the path does not exist. it short circuits to undefined = falsy value
   if(req.file?.path){
+    //Checks to see if an image is there to upload
     try {
       const result = await cloudinary.uploader.upload(req.file.path, { invalidate: true });
       //console.log(result);
